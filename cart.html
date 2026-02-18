@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+    <title>Корзина - Зоомагазин "ЗвероМир"</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<!-- Шапка сайта -->
+<div class="header">
+    <a href="index.html" class="logo">
+        🐾 ЗвероМир
+    </a>
+    <ul class="menu">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="catalog.html">Каталог</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+    </ul>
+</div>
+
+<hr />
+
+<!-- Хлебные крошки -->
+<b>Главная > Корзина</b>
+<br />
+<br />
+
+<h1>Корзина</h1>
+
+<div class="cart-page">
+    <!-- Контейнер для товаров -->
+    <div id="cart-items"></div>
+    
+    <!-- Контейнер для итогов -->
+    <div id="cart-summary" class="cart-summary" style="display: none;"></div>
+</div>
+
+<!-- Кнопка возврата в каталог -->
+<div style="text-align: center; margin: 30px 0;">
+    <a href="catalog.html" class="button">Продолжить покупки</a>
+</div>
+
+<hr />
+
+<!-- Футер -->
+<div class="footer">
+    <p>&copy; Все права защищены 2026 Зоомагазин "ЗвероМир"</p>
+    <p>Телефон: +7 (495) 123-45-67 | Email: info@zveromir.ru</p>
+    <p>г. Москва, Красная площадь, д. 3, 3 этаж</p>
+</div>
+
+<!-- Подключаем скрипт корзины -->
+<script src="cart.js"></script>
+
+</body>
+</html>
