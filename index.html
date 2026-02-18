@@ -1,86 +1,179 @@
 <!doctype html>
-<html>
+<html lang="ru">
 <head>
-    <title>Зоомагазин "ЗвероМир" - Главная</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зоомагазин "ЗвероМир" - Главная</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Шапка сайта -->
-<div class="header">
-    <a href="index.html" class="logo">
-        🐾 ЗвероМир
-    </a>
-    <ul class="menu">
-        <li><a href="index.html">Главная</a></li>
-        <li><a href="catalog.html">Каталог</a></li>
-        <li><a href="contacts.html">Контакты</a></li>
-        <li><a href="cart.html" class="cart-badge">🛒 Корзина</a></li>
-    </ul>
-</div>
-
-<hr />
-
-<!-- Приветственный блок -->
-<div style="text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #f0f8ff 0%, #ffffff 100%); border-radius: 30px; margin: 30px 0;">
-    <h1 style="font-size: 42px; margin-bottom: 15px;">🐾 Добро пожаловать в "ЗвероМир"!</h1>
-    <p style="font-size: 18px; color: #4a6fa5; max-width: 700px; margin: 0 auto 20px;">
-        Мы заботимся о ваших питомцах так же, как и вы. Только качественные товары для здоровья и счастья ваших любимцев.
-    </p>
-    <a href="catalog.html" class="button" style="padding: 15px 40px; font-size: 18px;">Перейти в каталог</a>
-</div>
-
-<!-- Преимущества магазина -->
-<h2>Почему выбирают нас?</h2>
-<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin: 40px 0;">
-    <div style="text-align: center; background: white; padding: 25px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.03);">
-        <div style="font-size: 48px; margin-bottom: 15px;">🚚</div>
-        <h3>Быстрая доставка</h3>
-        <p>Доставляем по Москве и области в течение 24 часов</p>
+<!-- Навигационная панель -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <div class="container">
+        <a class="navbar-brand logo" href="index.html">
+            <i class="bi bi-tree-fill text-primary"></i> ЗвероМир
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="catalog.html">Каталог</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contacts.html">Контакты</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link position-relative" href="cart.html" id="cartLink">
+                        <i class="bi bi-cart3"></i> Корзина
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary cart-count d-none">0</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div style="text-align: center; background: white; padding: 25px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.03);">
-        <div style="font-size: 48px; margin-bottom: 15px;">🏆</div>
-        <h3>Только качество</h3>
-        <p>Сертифицированные товары от проверенных брендов</p>
+</nav>
+
+<!-- Главный баннер -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row min-vh-100 align-items-center">
+            <div class="col-lg-6" data-aos="fade-right">
+                <h1 class="display-3 fw-bold mb-4">Добро пожаловать в <span class="text-primary">ЗвероМир</span></h1>
+                <p class="lead mb-4">Мы заботимся о ваших питомцах так же, как и вы. Только качественные товары для здоровья и счастья ваших любимцев.</p>
+                <a href="catalog.html" class="btn btn-primary btn-lg px-5 py-3 rounded-pill">
+                    Перейти в каталог <i class="bi bi-arrow-right ms-2"></i>
+                </a>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <img src="https://img.freepik.com/free-vector/pet-shop-abstract-concept-illustration_335657-3875.jpg" alt="Pet Shop" class="img-fluid floating">
+            </div>
+        </div>
     </div>
-    <div style="text-align: center; background: white; padding: 25px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.03);">
-        <div style="font-size: 48px; margin-bottom: 15px;">🐱</div>
-        <h3>Забота о питомцах</h3>
-        <p>Наши консультанты помогут подобрать идеальный товар</p>
+</section>
+
+<!-- Преимущества -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Почему выбирают нас?</h2>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-card text-center p-4">
+                    <div class="feature-icon-wrapper mb-4">
+                        <i class="bi bi-truck display-1 text-primary"></i>
+                    </div>
+                    <h3 class="h4 fw-bold mb-3">Быстрая доставка</h3>
+                    <p class="text-secondary">Доставляем по Москве и области в течение 24 часов</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-card text-center p-4">
+                    <div class="feature-icon-wrapper mb-4">
+                        <i class="bi bi-award display-1 text-primary"></i>
+                    </div>
+                    <h3 class="h4 fw-bold mb-3">Только качество</h3>
+                    <p class="text-secondary">Сертифицированные товары от проверенных брендов</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-card text-center p-4">
+                    <div class="feature-icon-wrapper mb-4">
+                        <i class="bi bi-heart display-1 text-primary"></i>
+                    </div>
+                    <h3 class="h4 fw-bold mb-3">Забота о питомцах</h3>
+                    <p class="text-secondary">Наши консультанты помогут подобрать идеальный товар</p>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</section>
 
 <!-- Популярные категории -->
-<h2>Популярные категории</h2>
-<div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin: 30px 0;">
-    <a href="catalog.html#корма" style="background: white; padding: 20px 40px; border-radius: 60px; text-decoration: none; color: #2c3e50; font-weight: 600; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #eef2f6;">
-        🍖 Корма
-    </a>
-    <a href="catalog.html#игрушки" style="background: white; padding: 20px 40px; border-radius: 60px; text-decoration: none; color: #2c3e50; font-weight: 600; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #eef2f6;">
-        🎾 Игрушки
-    </a>
-    <a href="catalog.html#аквариумы" style="background: white; padding: 20px 40px; border-radius: 60px; text-decoration: none; color: #2c3e50; font-weight: 600; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #eef2f6;">
-        🐟 Аквариумы
-    </a>
-</div>
-
-<!-- Ссылка на полный каталог -->
-<div style="text-align: center; margin: 50px 0;">
-    <a href="catalog.html" class="button" style="padding: 12px 30px;">Смотреть все товары</a>
-</div>
-
-<hr />
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Популярные категории</h2>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                <a href="catalog.html#корма" class="text-decoration-none">
+                    <div class="category-card p-5 text-center rounded-4 bg-primary bg-opacity-10">
+                        <i class="bi bi-basket display-1 text-primary mb-3"></i>
+                        <h3 class="h4 fw-bold text-dark">Корма</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                <a href="catalog.html#игрушки" class="text-decoration-none">
+                    <div class="category-card p-5 text-center rounded-4 bg-success bg-opacity-10">
+                        <i class="bi bi-controller display-1 text-success mb-3"></i>
+                        <h3 class="h4 fw-bold text-dark">Игрушки</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
+                <a href="catalog.html#аквариумы" class="text-decoration-none">
+                    <div class="category-card p-5 text-center rounded-4 bg-info bg-opacity-10">
+                        <i class="bi bi-water display-1 text-info mb-3"></i>
+                        <h3 class="h4 fw-bold text-dark">Аквариумы</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- Футер -->
-<div class="footer">
-    <p>&copy; Все права защищены 2026 Зоомагазин "ЗвероМир"</p>
-    <p>Телефон: +7 (495) 123-45-67 | Email: info@zveromir.ru</p>
-    <p>г. Москва, Красная площадь, д. 3, 3 этаж</p>
-</div>
+<footer class="bg-dark text-white py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <h4 class="mb-4"><i class="bi bi-tree-fill text-primary"></i> ЗвероМир</h4>
+                <p class="text-secondary">Забота о ваших питомцах — наша главная миссия.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h5 class="mb-4">Контакты</h5>
+                <p class="text-secondary"><i class="bi bi-telephone me-2"></i> +7 (495) 123-45-67</p>
+                <p class="text-secondary"><i class="bi bi-envelope me-2"></i> info@zveromir.ru</p>
+                <p class="text-secondary"><i class="bi bi-geo-alt me-2"></i> Красная пл., 3, Москва</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h5 class="mb-4">Режим работы</h5>
+                <p class="text-secondary">Ежедневно с 9:00 до 21:00</p>
+                <div class="social-links">
+                    <a href="#" class="text-white me-3"><i class="bi bi-telegram fs-4"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-whatsapp fs-4"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr class="bg-secondary">
+        <p class="text-center text-secondary mb-0">&copy; 2026 Все права защищены. Зоомагазин "ЗвероМир"</p>
+    </div>
+</footer>
 
-<!-- Подключаем скрипт корзины -->
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<!-- Cart JS -->
 <script src="cart.js"></script>
-
+<script>
+    AOS.init({
+        duration: 1000,
+        once: true
+    });
+</script>
 </body>
 </html>
