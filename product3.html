@@ -1,118 +1,244 @@
 <!doctype html>
-<html>
+<html lang="ru">
 <head>
-<title>Игрушка для собак в виде кости - ЗвероМир</title>
-<meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игрушка для собак - ЗвероМир</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Шапка сайта -->
-<div class="header">
-    <a href="index.html" class="logo">
-        🐾 ЗвероМир
-    </a>
-    <ul class="menu">
-        <li><a href="index.html">Главная</a></li>
-        <li><a href="catalog.html">Каталог</a></li>
-        <li><a href="contacts.html">Контакты</a></li>
-        <li><a href="cart.html" class="cart-badge">🛒 Корзина</a></li>
-    </ul>
-</div>
-
-<hr />
+<!-- Навигационная панель -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <div class="container">
+        <a class="navbar-brand logo" href="index.html">
+            <i class="bi bi-tree-fill text-primary"></i> ЗвероМир
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="catalog.html">Каталог</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contacts.html">Контакты</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link cart-link" href="cart.html" id="cartLink">
+                        <i class="bi bi-cart3"></i> Корзина
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary cart-count d-none">0</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <!-- Хлебные крошки -->
-<div class="breadcrumbs">
-    Главная > Каталог > Игрушки для собак
+<div class="container mt-5 pt-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Главная</a></li>
+            <li class="breadcrumb-item"><a href="catalog.html" class="text-decoration-none">Каталог</a></li>
+            <li class="breadcrumb-item"><a href="catalog.html?filter=toys" class="text-decoration-none">Игрушки</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Игрушка для собак</li>
+        </ol>
+    </nav>
 </div>
 
-<h1>Интерактивная игрушка для собак в виде кости</h1>
-
-<!-- Картинка товара -->
-<a href="https://aqplus.ru/upload/resize_cache/iblock/6ba/1200_1200_140cd750bba9870f18aada2478b24840a/ezvguzrqlldu1kr1p1bsrg2urei8o5ng.jpg" target="_blank">
-    <img class="product-image" src="https://aqplus.ru/upload/resize_cache/iblock/6ba/1200_1200_140cd750bba9870f18aada2478b24840a/ezvguzrqlldu1kr1p1bsrg2urei8o5ng.jpg" alt="Игрушка для собак в виде кости" width="400">
-</a>
-
-<!-- Блок с ценой и кнопкой -->
-<div class="price-block">
-    <h2>Цена: <span class="price-value">450 руб.</span></h2>
-    <button 
-        class="button add-to-cart-btn" 
-        data-id="product3"
-        data-name="Игрушка для собак (кость)"
-        data-price="450"
-        data-image="https://aqplus.ru/upload/resize_cache/iblock/6ba/1200_1200_140cd750bba9870f18aada2478b24840a/ezvguzrqlldu1kr1p1bsrg2urei8o5ng.jpg"
-        style="font-size: 18px; padding: 15px 40px;">
-        🛒 Добавить в корзину
-    </button>
-</div>
-
-<h2 class="product-title">Описание товара</h2>
-<p class="short-description">Прочная интерактивная игрушка в виде кости для активных игр с вашей собакой. Идеально подходит для развития жевательных навыков и снятия стресса у питомца.</p>
-
-<div class="product-specs">
-    <h2 class="product-title">Характеристики товара</h2>
-    <ul>
-        <li>Материал: прочная резина повышенной износостойкости</li>
-        <li>Цвет: оранжевый</li>
-        <li>Размер: 25 см в длину</li>
-        <li>Вес игрушки: 350 г</li>
-        <li>Рекомендуемый размер собаки: средние и крупные породы</li>
-        <li>Возраст собаки: от 6 месяцев</li>
-        <li>Особенности:
-            <ul>
-                <li>Плавающая конструкция</li>
-                <li>Массажный эффект для десен</li>
-                <li>Не содержит фталатов и BPA</li>
-            </ul>
-        </li>
-        <li>Уход: можно мыть в теплой воде с мягким моющим средством</li>
-    </ul>
-</div>
-
-<div class="detailed-description">
-    <h2 class="product-title">Подробное описание товара</h2>
-    <p>Интерактивная игрушка для собак в виде кости — это идеальное решение для активных и энергичных питомцев. Игрушка изготовлена из специальной прочной резины, которая выдерживает даже самые сильные укусы.</p>
-
-    <h3>Преимущества игрушки:</h3>
-    <p>1. <strong>Долговечность</strong> — материал устойчив к разрывам и деформациям</p>
-    <p>2. <strong>Безопасность</strong> — не содержит вредных химических веществ</p>
-    <p>3. <strong>Развивающая функция</strong> — помогает развивать жевательные мышцы</p>
-    <p>4. <strong>Антистресс</strong> — отвлекает собаку от порчи мебели и обуви</p>
-    <p>5. <strong>Интерактивность</strong> — можно наполнять любимыми лакомствами питомца</p>
-
-    <p>Благодаря плавающим свойствам, игрушку можно использовать во время купания или игр у воды. Яркий цвет делает игрушку хорошо заметной как в воде, так и на траве.</p>
-
-    <h3>Рекомендации по использованию:</h3>
-    <p>• Контролируйте собаку во время первых игр с новой игрушкой</p>
-    <p>• Регулярно проверяйте игрушку на наличие повреждений</p>
-    <p>• При сильном износе рекомендуется заменить игрушку</p>
-    <p>• Не оставляйте собаку наедине с игрушкой на длительное время</p>
-</div>
-
-<h2 class="product-title">Рекомендации по использованию</h2>
-<p class="short-description">Игрушка предназначена для игр под присмотром хозяина. Рекомендуется давать игрушку на 20-30 минут несколько раз в день. После игры промывать теплой водой.</p>
-
-<div style="text-align: center; margin: 40px 0;">
-    <h2>Смотрите также:</h2>
-    <div class="button-group">
-        <a href="product1.html" class="button">Корм для собак</a>
-        <a href="product4.html" class="button">Игрушки для кошек</a>
+<!-- Товар -->
+<section class="py-4">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-6" data-aos="fade-right">
+                <div class="product-image-wrapper text-center">
+                    <img src="https://aqplus.ru/upload/resize_cache/iblock/6ba/1200_1200_140cd750bba9870f18aada2478b24840a/ezvguzrqlldu1kr1p1bsrg2urei8o5ng.jpg" 
+                         alt="Игрушка для собак в виде кости" 
+                         class="img-fluid rounded-4 shadow-lg product-image"
+                         onerror="this.src='https://via.placeholder.com/400x400?text=Нет+фото'">
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <h1 class="display-5 fw-bold mb-4">Интерактивная игрушка для собак в виде кости</h1>
+                
+                <div class="price-block bg-light p-4 rounded-4 mb-4 text-center">
+                    <span class="display-4 fw-bold text-primary">450 ₽</span>
+                </div>
+                
+                <div class="mb-4">
+                    <button class="btn btn-primary btn-lg w-100 py-3 add-to-cart-btn mb-3 rounded-pill"
+                            data-id="product3"
+                            data-name="Игрушка для собак (кость)"
+                            data-price="450"
+                            data-image="https://aqplus.ru/upload/resize_cache/iblock/6ba/1200_1200_140cd750bba9870f18aada2478b24840a/ezvguzrqlldu1kr1p1bsrg2urei8o5ng.jpg">
+                        <i class="bi bi-cart-plus me-2"></i>Добавить в корзину
+                    </button>
+                    <a href="catalog.html" class="btn btn-outline-secondary btn-lg w-100 py-3 rounded-pill">
+                        <i class="bi bi-arrow-left me-2"></i>Продолжить покупки
+                    </a>
+                </div>
+                
+                <div class="short-description p-4 bg-light rounded-4">
+                    <p class="lead mb-0">Прочная интерактивная игрушка в виде кости для активных игр с вашей собакой. Идеально подходит для развития жевательных навыков и снятия стресса у питомца.</p>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</section>
 
-<hr />
+<!-- Характеристики -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="display-5 fw-bold text-center mb-5" data-aos="fade-up">Характеристики</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="specs-list bg-white p-5 rounded-4 shadow-sm" data-aos="fade-up">
+                    <div class="spec-item d-flex justify-content-between py-3 border-bottom">
+                        <span class="fw-bold">Материал:</span>
+                        <span>Прочная резина</span>
+                    </div>
+                    <div class="spec-item d-flex justify-content-between py-3 border-bottom">
+                        <span class="fw-bold">Размер:</span>
+                        <span>25 см</span>
+                    </div>
+                    <div class="spec-item d-flex justify-content-between py-3 border-bottom">
+                        <span class="fw-bold">Вес:</span>
+                        <span>350 г</span>
+                    </div>
+                    <div class="spec-item d-flex justify-content-between py-3 border-bottom">
+                        <span class="fw-bold">Цвет:</span>
+                        <span>Оранжевый</span>
+                    </div>
+                    <div class="spec-item d-flex justify-content-between py-3 border-bottom">
+                        <span class="fw-bold">Для пород:</span>
+                        <span>Средние и крупные</span>
+                    </div>
+                    <div class="spec-item d-flex justify-content-between py-3">
+                        <span class="fw-bold">Особенности:</span>
+                        <span>Плавающая, массажный эффект</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Подробное описание -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="display-5 fw-bold text-center mb-5" data-aos="fade-up">Подробное описание</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="detailed-description bg-white p-5 rounded-4 shadow-sm" data-aos="fade-up">
+                    <p>Интерактивная игрушка для собак в виде кости — это идеальное решение для активных и энергичных питомцев. Игрушка изготовлена из специальной прочной резины, которая выдерживает даже самые сильные укусы.</p>
+                    
+                    <h3 class="h4 fw-bold mt-4 mb-3">Преимущества:</h3>
+                    <p>• <strong>Долговечность</strong> — материал устойчив к разрывам и деформациям</p>
+                    <p>• <strong>Безопасность</strong> — не содержит вредных химических веществ (BPA free)</p>
+                    <p>• <strong>Развивающая функция</strong> — помогает развивать жевательные мышцы</p>
+                    <p>• <strong>Антистресс</strong> — отвлекает собаку от порчи мебели и обуви</p>
+                    <p>• <strong>Интерактивность</strong> — можно наполнять любимыми лакомствами</p>
+                    
+                    <h3 class="h4 fw-bold mt-4 mb-3">Рекомендации по использованию:</h3>
+                    <p>• Контролируйте собаку во время первых игр с новой игрушкой</p>
+                    <p>• Регулярно проверяйте игрушку на наличие повреждений</p>
+                    <p>• При сильном износе рекомендуется заменить игрушку</p>
+                    <p>• Можно мыть в теплой воде с мягким моющим средством</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Похожие товары -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="display-5 fw-bold text-center mb-5" data-aos="fade-up">Похожие товары</h2>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="card product-card h-100 border-0 shadow-sm">
+                    <img src="https://shop.purina.ru/media/catalog/product//5/2/52530a60-5947-11ee-8527-06612dae177d_jedk5vrzirrvaqpb.png" class="card-img-top p-3" alt="Корм для собак" style="height: 200px; object-fit: contain;" onerror="this.src='https://via.placeholder.com/200x200?text=Нет+фото'">
+                    <div class="card-body">
+                        <h5 class="card-title">Корм для собак Purina One</h5>
+                        <p class="card-text text-secondary">350 руб.</p>
+                        <a href="product1.html" class="btn btn-outline-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="card product-card h-100 border-0 shadow-sm">
+                    <img src="https://api.zapovednik96.ru/upload/iblock/500/500fc4b9103d50aaf9e6d7cd3fbefd99.jpg" class="card-img-top p-3" alt="Игрушки для кошек" style="height: 200px; object-fit: contain;" onerror="this.src='https://via.placeholder.com/200x200?text=Нет+фото'">
+                    <div class="card-body">
+                        <h5 class="card-title">Набор игрушек для кошек</h5>
+                        <p class="card-text text-secondary">700 руб.</p>
+                        <a href="product4.html" class="btn btn-outline-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="card product-card h-100 border-0 shadow-sm">
+                    <img src="https://shop.purina.ru/media/catalog/product//1/0/104ab9ae-5e12-11ee-aa1b-067a761482e2_jfnxm2svorofzwvq.webp" class="card-img-top p-3" alt="Корм для кошек" style="height: 200px; object-fit: contain;" onerror="this.src='https://via.placeholder.com/200x200?text=Нет+фото'">
+                    <div class="card-body">
+                        <h5 class="card-title">Корм для кошек Purina One</h5>
+                        <p class="card-text text-secondary">950 руб.</p>
+                        <a href="product2.html" class="btn btn-outline-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- Футер -->
-<div class="footer">
-    <p>&copy; Все права защищены 2026 Зоомагазин "ЗвероМир"</p>
-    <p>Телефон: +7 (495) 123-45-67 | Email: info@zveromir.ru</p>
-    <p>г. Москва, Красная площадь, д. 3, 3 этаж</p>
-</div>
+<footer class="bg-dark text-white py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <h4 class="mb-4"><i class="bi bi-tree-fill text-primary"></i> ЗвероМир</h4>
+                <p class="text-secondary">Забота о ваших питомцах — наша главная миссия.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h5 class="mb-4">Контакты</h5>
+                <p class="text-secondary"><i class="bi bi-telephone me-2"></i> +7 (495) 123-45-67</p>
+                <p class="text-secondary"><i class="bi bi-envelope me-2"></i> info@zveromir.ru</p>
+                <p class="text-secondary"><i class="bi bi-geo-alt me-2"></i> Красная пл., 3, Москва</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h5 class="mb-4">Режим работы</h5>
+                <p class="text-secondary">Ежедневно с 9:00 до 21:00</p>
+                <div class="social-links">
+                    <a href="#" class="text-white me-3"><i class="bi bi-telegram fs-4"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-whatsapp fs-4"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr class="bg-secondary">
+        <p class="text-center text-secondary mb-0">&copy; 2026 Все права защищены. Зоомагазин "ЗвероМир"</p>
+    </div>
+</footer>
 
-<!-- Подключаем скрипт корзины -->
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<!-- Cart JS -->
 <script src="cart.js"></script>
-
+<script>
+    AOS.init({ duration: 800, once: true });
+</script>
 </body>
 </html>
