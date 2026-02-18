@@ -13,6 +13,137 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Стили для корзины */
+        .cart-item {
+            transition: all 0.3s ease;
+            border-radius: 15px !important;
+            overflow: hidden;
+        }
+        
+        .cart-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+        }
+        
+        .cart-image-container {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f8fafc 0%, #e9f0f5 100%);
+            border-radius: 12px;
+            padding: 8px;
+            border: 1px solid #e9f0f5;
+        }
+        
+        .cart-image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .quantity-btn {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid #dee2e6;
+            background: white;
+            color: #4a6fa5;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+        
+        .quantity-btn:hover {
+            background: #4a6fa5;
+            color: white;
+            border-color: #4a6fa5;
+            transform: scale(1.1);
+        }
+        
+        .quantity-value {
+            font-weight: 600;
+            color: #2c3e50;
+            min-width: 30px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        .remove-btn {
+            color: #ff6b6b;
+            transition: all 0.3s ease;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            padding: 5px;
+        }
+        
+        .remove-btn:hover {
+            color: #ff4757;
+            transform: scale(1.2);
+        }
+        
+        .empty-cart {
+            background: white;
+            border-radius: 25px;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            border: 1px solid #e9f0f5;
+        }
+        
+        .empty-cart i {
+            font-size: 5rem;
+            color: #cbd6e4;
+            margin-bottom: 20px;
+        }
+        
+        .cart-summary .card {
+            border-radius: 20px !important;
+            border: 1px solid #e9f0f5 !important;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px dashed #e9f0f5;
+        }
+        
+        .summary-row.total {
+            border-bottom: none;
+            padding-top: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        
+        @media (max-width: 768px) {
+            .cart-image-container {
+                width: 60px;
+                height: 60px;
+                margin: 0 auto 10px;
+            }
+            
+            .cart-item .row > div {
+                text-align: center !important;
+            }
+            
+            .d-flex.align-items-center {
+                justify-content: center;
+            }
+            
+            .text-end {
+                text-align: center !important;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -37,7 +168,7 @@
                     <a class="nav-link" href="contacts.html">Контакты</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link cart-link active" href="cart.html" id="cartLink">
+                    <a class="nav-link cart-link position-relative active" href="cart.html" id="cartLink">
                         <i class="bi bi-cart3"></i> Корзина
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary cart-count d-none">0</span>
                     </a>
@@ -61,23 +192,63 @@
 <section class="py-4">
     <div class="container text-center" data-aos="fade-up">
         <h1 class="display-4 fw-bold mb-4">Корзина</h1>
+        <p class="lead text-secondary">Ваши выбранные товары</p>
     </div>
 </section>
 
 <!-- Корзина -->
-<div class="container">
-    <div class="row">
+<div class="container mb-5">
+    <div class="row g-4">
         <div class="col-lg-8">
             <div id="cart-items" data-aos="fade-right"></div>
         </div>
         <div class="col-lg-4">
-            <div id="cart-summary" class="cart-summary" style="display: none;" data-aos="fade-left"></div>
+            <div id="cart-summary" data-aos="fade-left"></div>
         </div>
     </div>
 </div>
 
+<!-- Рекомендации -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-5" data-aos="fade-up">Вам также может понравиться</h2>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="card product-card h-100 border-0 shadow-sm">
+                    <img src="https://shop.purina.ru/media/catalog/product//5/2/52530a60-5947-11ee-8527-06612dae177d_jedk5vrzirrvaqpb.png" class="card-img-top p-3" alt="Корм для собак" style="height: 200px; object-fit: contain;">
+                    <div class="card-body">
+                        <h5 class="card-title">Корм для собак Purina One</h5>
+                        <p class="card-text text-primary fw-bold">350 ₽</p>
+                        <a href="product1.html" class="btn btn-outline-primary w-100">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="card product-card h-100 border-0 shadow-sm">
+                    <img src="https://api.zapovednik96.ru/upload/iblock/500/500fc4b9103d50aaf9e6d7cd3fbefd99.jpg" class="card-img-top p-3" alt="Игрушки для кошек" style="height: 200px; object-fit: contain;">
+                    <div class="card-body">
+                        <h5 class="card-title">Набор игрушек для кошек</h5>
+                        <p class="card-text text-primary fw-bold">700 ₽</p>
+                        <a href="product4.html" class="btn btn-outline-primary w-100">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="card product-card h-100 border-0 shadow-sm">
+                    <img src="https://aqplus.ru/upload/resize_cache/iblock/6ba/1200_1200_140cd750bba9870f18aada2478b24840a/ezvguzrqlldu1kr1p1bsrg2urei8o5ng.jpg" class="card-img-top p-3" alt="Игрушка для собак" style="height: 200px; object-fit: contain;">
+                    <div class="card-body">
+                        <h5 class="card-title">Игрушка для собак (кость)</h5>
+                        <p class="card-text text-primary fw-bold">450 ₽</p>
+                        <a href="product3.html" class="btn btn-outline-primary w-100">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Футер -->
-<footer class="bg-dark text-white py-5 mt-5">
+<footer class="bg-dark text-white py-5">
     <div class="container">
         <div class="row">
             <div class="col-md-4 mb-4">
@@ -109,7 +280,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <!-- AOS JS -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<!-- Cart JS -->
+<!-- Cart JS (основной файл с логикой) -->
 <script src="cart.js"></script>
 <script>
     AOS.init({ duration: 800, once: true });
