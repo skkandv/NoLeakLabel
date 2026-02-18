@@ -13,14 +13,77 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Дополнительные стили для каталога */
+        .category-btn {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .category-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .category-btn:active::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .product-card {
+            cursor: pointer;
+        }
+        
+        .product-card .btn {
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover .btn {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #3b82f6;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+        
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .loading-spinner.show {
+            display: block;
+        }
+    </style>
 </head>
 <body>
 
 <!-- Навигационная панель -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <div class="container">
-        <a class="navbar-brand logo" href="index.html">
-            <i class="bi bi-tree-fill text-primary"></i> ЗвероМир
+        <a class="navbar-brand" href="index.html">
+            <i class="bi bi-tree-fill"></i> ЗвероМир
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
@@ -37,9 +100,9 @@
                     <a class="nav-link" href="contacts.html">Контакты</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link cart-link position-relative" href="cart.html" id="cartLink">
+                    <a class="nav-link cart-link" href="cart.html">
                         <i class="bi bi-cart3"></i> Корзина
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary cart-count d-none">0</span>
+                        <span class="cart-count d-none">0</span>
                     </a>
                 </li>
             </ul>
@@ -48,20 +111,19 @@
 </nav>
 
 <!-- Хлебные крошки -->
-<div class="container mt-5 pt-5">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Главная</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Каталог</li>
-        </ol>
-    </nav>
+<div class="container mt-4">
+    <div class="breadcrumb-custom" data-aos="fade-up">
+        <a href="index.html">Главная</a>
+        <i class="bi bi-chevron-right"></i>
+        <span class="active">Каталог</span>
+    </div>
 </div>
 
 <!-- Заголовок -->
 <section class="py-4">
     <div class="container text-center" data-aos="fade-up">
         <h1 class="display-4 fw-bold mb-4">Каталог товаров</h1>
-        <p class="lead text-secondary mx-auto" style="max-width: 700px;">
+        <p class="lead text-secondary mx-auto" style="max-width: 700px;" data-aos="fade-up" data-aos-delay="100">
             Здесь вы найдёте всё необходимое для ваших любимых питомцев
         </p>
     </div>
@@ -69,13 +131,29 @@
 
 <!-- Кнопки-фильтры -->
 <div class="container mb-5">
-    <div class="d-flex justify-content-center gap-3 flex-wrap" data-aos="fade-up">
-        <button class="btn btn-outline-primary rounded-pill px-4 py-2 filter-btn active" data-filter="all">Все товары</button>
-        <button class="btn btn-outline-primary rounded-pill px-4 py-2 filter-btn" data-filter="dogs">🐕 Собаки</button>
-        <button class="btn btn-outline-primary rounded-pill px-4 py-2 filter-btn" data-filter="cats">🐈 Кошки</button>
-        <button class="btn btn-outline-primary rounded-pill px-4 py-2 filter-btn" data-filter="fish">🐟 Рыбки</button>
-        <button class="btn btn-outline-primary rounded-pill px-4 py-2 filter-btn" data-filter="toys">🎾 Игрушки</button>
+    <div class="d-flex justify-content-center gap-3 flex-wrap" data-aos="fade-up" data-aos-delay="200">
+        <button class="btn btn-outline-primary rounded-pill px-4 py-2 filter-btn category-btn active" data-filter="all">
+            <i class="bi bi-grid-3x3-gap-fill me-2"></i>Все товары
+        </button>
+        <button class="btn btn-outline-primary rounded-pill px-4 py-2 filter-btn category-btn" data-filter="dogs">
+            <i class="bi bi-emoji-smile me-2"></i>🐕 Собаки
+        </button>
+        <button class="btn btn-outline-primary rounded-pill px-4 py-2 filter-btn category-btn" data-filter="cats">
+            <i class="bi bi-emoji-smile me-2"></i>🐈 Кошки
+        </button>
+        <button class="btn btn-outline-primary rounded-pill px-4 py-2 filter-btn category-btn" data-filter="fish">
+            <i class="bi bi-water me-2"></i>🐟 Рыбки
+        </button>
+        <button class="btn btn-outline-primary rounded-pill px-4 py-2 filter-btn category-btn" data-filter="toys">
+            <i class="bi bi-controller me-2"></i>🎾 Игрушки
+        </button>
     </div>
+</div>
+
+<!-- Индикатор загрузки -->
+<div class="loading-spinner" id="loadingSpinner">
+    <div class="loader"></div>
+    <p class="mt-3 text-secondary">Загрузка товаров...</p>
 </div>
 
 <!-- Товары -->
@@ -84,33 +162,34 @@
 </div>
 
 <!-- Кнопка наверх -->
-<div class="container text-center my-5">
-    <button id="scrollTopBtn" class="btn btn-primary rounded-circle p-3 shadow">
-        <i class="bi bi-arrow-up fs-4"></i>
-    </button>
-</div>
+<button id="scrollTopBtn" class="btn btn-primary">
+    <i class="bi bi-arrow-up"></i>
+</button>
+
+<!-- Уведомления -->
+<div id="notification-container"></div>
 
 <!-- Футер -->
-<footer class="bg-dark text-white py-5 mt-5">
+<footer>
     <div class="container">
         <div class="row">
-            <div class="col-md-4 mb-4">
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
                 <h4 class="mb-4"><i class="bi bi-tree-fill text-primary"></i> ЗвероМир</h4>
                 <p class="text-secondary">Забота о ваших питомцах — наша главная миссия.</p>
             </div>
-            <div class="col-md-4 mb-4">
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
                 <h5 class="mb-4">Контакты</h5>
-                <p class="text-secondary"><i class="bi bi-telephone me-2"></i> +7 (495) 123-45-67</p>
-                <p class="text-secondary"><i class="bi bi-envelope me-2"></i> info@zveromir.ru</p>
-                <p class="text-secondary"><i class="bi bi-geo-alt me-2"></i> Красная пл., 3, Москва</p>
+                <p><i class="bi bi-telephone me-2"></i> +7 (495) 123-45-67</p>
+                <p><i class="bi bi-envelope me-2"></i> info@zveromir.ru</p>
+                <p><i class="bi bi-geo-alt me-2"></i> Красная пл., 3, Москва</p>
             </div>
-            <div class="col-md-4 mb-4">
+            <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
                 <h5 class="mb-4">Режим работы</h5>
                 <p class="text-secondary">Ежедневно с 9:00 до 21:00</p>
                 <div class="social-links">
-                    <a href="#" class="text-white me-3"><i class="bi bi-telegram fs-4"></i></a>
-                    <a href="#" class="text-white me-3"><i class="bi bi-whatsapp fs-4"></i></a>
-                    <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+                    <a href="#"><i class="bi bi-telegram"></i></a>
+                    <a href="#"><i class="bi bi-whatsapp"></i></a>
+                    <a href="#"><i class="bi bi-instagram"></i></a>
                 </div>
             </div>
         </div>
@@ -126,7 +205,12 @@
 <!-- Cart JS -->
 <script src="cart.js"></script>
 <script>
-    AOS.init({ duration: 800, once: true });
+    // Инициализация AOS
+    AOS.init({ 
+        duration: 800, 
+        once: true,
+        easing: 'ease-in-out'
+    });
 
     // Данные товаров
     const products = [
@@ -136,7 +220,8 @@
             price: 350, 
             image: 'https://shop.purina.ru/media/catalog/product//5/2/52530a60-5947-11ee-8527-06612dae177d_jedk5vrzirrvaqpb.png', 
             category: 'dogs',
-            link: 'product1.html'
+            link: 'product1.html',
+            badge: 'Хит'
         },
         { 
             id: 'product2', 
@@ -144,7 +229,8 @@
             price: 950, 
             image: 'https://shop.purina.ru/media/catalog/product//1/0/104ab9ae-5e12-11ee-aa1b-067a761482e2_jfnxm2svorofzwvq.webp', 
             category: 'cats',
-            link: 'product2.html'
+            link: 'product2.html',
+            badge: 'Новинка'
         },
         { 
             id: 'product3', 
@@ -160,7 +246,8 @@
             price: 700, 
             image: 'https://api.zapovednik96.ru/upload/iblock/500/500fc4b9103d50aaf9e6d7cd3fbefd99.jpg', 
             category: 'toys',
-            link: 'product4.html'
+            link: 'product4.html',
+            badge: 'Скидка 10%'
         },
         { 
             id: 'product5', 
@@ -172,83 +259,54 @@
         }
     ];
 
-    // Отображение товаров
+    // Отображение товаров с анимацией
     function displayProducts(filter = 'all') {
         const container = document.getElementById('productsContainer');
-        const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+        const spinner = document.getElementById('loadingSpinner');
         
-        if (filtered.length === 0) {
-            container.innerHTML = `
-                <div class="col-12 text-center py-5">
-                    <i class="bi bi-emoji-frown display-1 text-secondary mb-4"></i>
-                    <h3 class="fw-bold mb-3">Товары не найдены</h3>
-                    <p class="text-secondary mb-4">В этой категории пока нет товаров</p>
-                    <button class="btn btn-primary filter-btn" data-filter="all">Показать все товары</button>
-                </div>
-            `;
-            return;
-        }
+        spinner.classList.add('show');
         
-        container.innerHTML = filtered.map((product, index) => `
-            <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="${index * 100}">
-                <div class="card product-card h-100 border-0 shadow-sm">
-                    <img src="${product.image}" class="card-img-top p-3" alt="${product.name}" style="height: 250px; object-fit: contain;" onerror="this.src='https://via.placeholder.com/250x250?text=Нет+фото'">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title fw-bold">${product.name}</h5>
-                        <p class="card-text text-primary fw-bold mb-3">${product.price} ₽</p>
-                        <div class="mt-auto d-flex gap-2">
-                            <a href="${product.link}" class="btn btn-outline-primary flex-grow-1">Подробнее</a>
-                            <button class="btn btn-primary add-to-cart-btn flex-grow-1" 
-                                    data-id="${product.id}"
-                                    data-name="${product.name}"
-                                    data-price="${product.price}"
-                                    data-image="${product.image}">
-                                <i class="bi bi-cart-plus"></i> В корзину
-                            </button>
+        setTimeout(() => {
+            const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
+            
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12 text-center py-5 fade-in">
+                        <i class="bi bi-emoji-frown display-1 text-secondary mb-4"></i>
+                        <h3 class="fw-bold mb-3">Товары не найдены</h3>
+                        <p class="text-secondary mb-4">В этой категории пока нет товаров</p>
+                        <button class="btn btn-primary filter-btn" data-filter="all">Показать все товары</button>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = filtered.map((product, index) => `
+                    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="${index * 100}">
+                        <div class="product-card h-100">
+                            ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+                            <img src="${product.image}" class="img-fluid" alt="${product.name}" 
+                                 onerror="this.src='https://via.placeholder.com/250x250?text=Нет+фото'">
+                            <div class="d-flex flex-column h-100">
+                                <h5>${product.name}</h5>
+                                <p class="price mt-auto">${product.price} ₽</p>
+                                <div class="d-flex gap-2">
+                                    <a href="${product.link}" class="btn btn-outline-primary flex-grow-1">
+                                        <i class="bi bi-eye me-1"></i>Подробнее
+                                    </a>
+                                    <button class="btn btn-primary add-to-cart-btn flex-grow-1" 
+                                            data-id="${product.id}"
+                                            data-name="${product.name}"
+                                            data-price="${product.price}"
+                                            data-image="${product.image}">
+                                        <i class="bi bi-cart-plus"></i> В корзину
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        `).join('');
-        
-        // Переинициализация кнопок после обновления DOM
-        if (typeof initAddToCartButtons === 'function') {
-            initAddToCartButtons();
-        }
-    }
-
-    // Фильтрация
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            document.querySelectorAll('.filter-btn').forEach(b => {
-                b.classList.remove('active', 'btn-primary');
-                b.classList.add('btn-outline-primary');
-            });
-            this.classList.remove('btn-outline-primary');
-            this.classList.add('active', 'btn-primary');
-            displayProducts(this.dataset.filter);
-        });
-    });
-
-    // Кнопка наверх
-    document.getElementById('scrollTopBtn').addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // Применяем фильтр из URL при загрузке
-    const urlParams = new URLSearchParams(window.location.search);
-    const filterParam = urlParams.get('filter');
-    if (filterParam) {
-        const filterBtn = document.querySelector(`.filter-btn[data-filter="${filterParam}"]`);
-        if (filterBtn) {
-            filterBtn.click();
-        } else {
-            displayProducts('all');
-        }
-    } else {
-        // Начальное отображение
-        displayProducts('all');
-    }
-</script>
-</body>
-</html>
+                `).join('');
+            }
+            
+            spinner.classList.remove('show');
+            
+            // Анимация появления
+            container.querySelectorAll('.product-card').
