@@ -37,7 +37,7 @@
                     <a class="nav-link" href="contacts.html">Контакты</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link cart-link" href="cart.html" id="cartLink">
+                    <a class="nav-link cart-link position-relative" href="cart.html" id="cartLink">
                         <i class="bi bi-cart3"></i> Корзина
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary cart-count d-none">0</span>
                     </a>
@@ -130,11 +130,46 @@
 
     // Данные товаров
     const products = [
-        { id: 'product1', name: 'Корм для собак Purina One МИНИ 600 г', price: 350, image: 'https://shop.purina.ru/media/catalog/product//5/2/52530a60-5947-11ee-8527-06612dae177d_jedk5vrzirrvaqpb.png', category: 'dogs' },
-        { id: 'product2', name: 'Корм для кошек Purina One с курицей 1,5 кг', price: 950, image: 'https://shop.purina.ru/media/catalog/product//1/0/104ab9ae-5e12-11ee-aa1b-067a761482e2_jfnxm2svorofzwvq.webp', category: 'cats' },
-        { id: 'product3', name: 'Игрушка для собак (кость)', price: 450, image: 'https://aqplus.ru/upload/resize_cache/iblock/6ba/1200_1200_140cd750bba9870f18aada2478b24840a/ezvguzrqlldu1kr1p1bsrg2urei8o5ng.jpg', category: 'toys' },
-        { id: 'product4', name: 'Набор игрушек-удочек для кошек', price: 700, image: 'https://api.zapovednik96.ru/upload/iblock/500/500fc4b9103d50aaf9e6d7cd3fbefd99.jpg', category: 'toys' },
-        { id: 'product5', name: 'Аквариум 50 литров полный комплект', price: 3500, image: 'https://dolinaakvariumov.ru/image/cache/catalog/Akvas_2024/pryamoj/50loreh-300x300.jpg', category: 'fish' }
+        { 
+            id: 'product1', 
+            name: 'Корм для собак Purina One МИНИ 600 г', 
+            price: 350, 
+            image: 'https://shop.purina.ru/media/catalog/product//5/2/52530a60-5947-11ee-8527-06612dae177d_jedk5vrzirrvaqpb.png', 
+            category: 'dogs',
+            link: 'product1.html'
+        },
+        { 
+            id: 'product2', 
+            name: 'Корм для кошек Purina One с курицей 1,5 кг', 
+            price: 950, 
+            image: 'https://shop.purina.ru/media/catalog/product//1/0/104ab9ae-5e12-11ee-aa1b-067a761482e2_jfnxm2svorofzwvq.webp', 
+            category: 'cats',
+            link: 'product2.html'
+        },
+        { 
+            id: 'product3', 
+            name: 'Игрушка для собак (кость)', 
+            price: 450, 
+            image: 'https://aqplus.ru/upload/resize_cache/iblock/6ba/1200_1200_140cd750bba9870f18aada2478b24840a/ezvguzrqlldu1kr1p1bsrg2urei8o5ng.jpg', 
+            category: 'toys',
+            link: 'product3.html'
+        },
+        { 
+            id: 'product4', 
+            name: 'Набор игрушек-удочек для кошек', 
+            price: 700, 
+            image: 'https://api.zapovednik96.ru/upload/iblock/500/500fc4b9103d50aaf9e6d7cd3fbefd99.jpg', 
+            category: 'toys',
+            link: 'product4.html'
+        },
+        { 
+            id: 'product5', 
+            name: 'Аквариум 50 литров полный комплект', 
+            price: 3500, 
+            image: 'https://dolinaakvariumov.ru/image/cache/catalog/Akvas_2024/pryamoj/50loreh-300x300.jpg', 
+            category: 'fish',
+            link: 'product5.html'
+        }
     ];
 
     // Отображение товаров
@@ -160,9 +195,9 @@
                     <img src="${product.image}" class="card-img-top p-3" alt="${product.name}" style="height: 250px; object-fit: contain;" onerror="this.src='https://via.placeholder.com/250x250?text=Нет+фото'">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title fw-bold">${product.name}</h5>
-                        <p class="card-text text-secondary mb-3">${product.price} руб.</p>
+                        <p class="card-text text-primary fw-bold mb-3">${product.price} ₽</p>
                         <div class="mt-auto d-flex gap-2">
-                            <a href="product${product.id.slice(-1)}.html" class="btn btn-outline-primary flex-grow-1">Подробнее</a>
+                            <a href="${product.link}" class="btn btn-outline-primary flex-grow-1">Подробнее</a>
                             <button class="btn btn-primary add-to-cart-btn flex-grow-1" 
                                     data-id="${product.id}"
                                     data-name="${product.name}"
@@ -176,15 +211,19 @@
             </div>
         `).join('');
         
-        // Переинициализация кнопок
-        initAddToCartButtons();
+        // Переинициализация кнопок после обновления DOM
+        if (typeof initAddToCartButtons === 'function') {
+            initAddToCartButtons();
+        }
     }
 
     // Фильтрация
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', function() {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active', 'btn-primary'));
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.add('btn-outline-primary'));
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                b.classList.remove('active', 'btn-primary');
+                b.classList.add('btn-outline-primary');
+            });
             this.classList.remove('btn-outline-primary');
             this.classList.add('active', 'btn-primary');
             displayProducts(this.dataset.filter);
