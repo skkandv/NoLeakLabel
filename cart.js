@@ -31,21 +31,32 @@ function updateCartCount() {
     });
 }
 
-// Функция для добавления товара
+// Функция для добавления товара (ИСПРАВЛЕНА)
 function addToCart(product) {
+    // Проверяем, что product содержит все необходимые поля
+    if (!product.id || !product.name || !product.price || !product.image) {
+        console.error('Неверный формат товара:', product);
+        showNotification('Ошибка при добавлении товара', 'danger');
+        return;
+    }
+    
     const existingItem = cart.find(item => item.id === product.id);
     
     if (existingItem) {
         existingItem.quantity += 1;
+        showNotification(`✓ ${product.name} (количество: ${existingItem.quantity})`, 'success');
     } else {
         cart.push({
-            ...product,
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image,
             quantity: 1
         });
+        showNotification(`✓ ${product.name} добавлен в корзину`, 'success');
     }
     
     saveCart();
-    showNotification(`✓ ${product.name} добавлен в корзину`, 'success');
 }
 
 // Функция для удаления товара
@@ -154,7 +165,7 @@ function showNotification(message, type = 'success') {
     }, 3000);
 }
 
-// Функция для отображения корзины на странице cart.html
+// Функция для отображения корзины на странице cart.html (ИСПРАВЛЕНА)
 function updateCartDisplay() {
     const cartContainer = document.getElementById('cart-items');
     const summaryContainer = document.getElementById('cart-summary');
@@ -188,8 +199,8 @@ function updateCartDisplay() {
                 <div class="card-body p-3 p-md-4">
                     <div class="row align-items-center g-3">
                         <!-- Изображение товара -->
-                        <div class="col-3 col-md-2">
-                            <div class="cart-image-container text-center">
+                        <div class="col-12 col-sm-3 col-md-2 text-center text-sm-start">
+                            <div class="cart-image-container d-inline-block">
                                 <img src="${item.image}" alt="${item.name}" 
                                      class="img-fluid rounded-3 border" 
                                      style="max-width: 80px; max-height: 80px; object-fit: contain;"
@@ -198,13 +209,13 @@ function updateCartDisplay() {
                         </div>
                         
                         <!-- Название товара -->
-                        <div class="col-9 col-md-4">
+                        <div class="col-12 col-sm-9 col-md-4 text-center text-sm-start">
                             <h6 class="fw-bold mb-1">${item.name}</h6>
                             <p class="text-secondary small mb-0">${item.price} ₽ / шт</p>
                         </div>
                         
                         <!-- Количество -->
-                        <div class="col-6 col-md-3">
+                        <div class="col-6 col-sm-5 col-md-3">
                             <div class="d-flex align-items-center justify-content-center justify-content-md-start">
                                 <button class="btn btn-outline-secondary btn-sm quantity-btn rounded-circle" 
                                         onclick="updateQuantity('${item.id}', -1)"
@@ -221,12 +232,12 @@ function updateCartDisplay() {
                         </div>
                         
                         <!-- Цена -->
-                        <div class="col-2 col-md-2">
+                        <div class="col-4 col-sm-4 col-md-2">
                             <span class="fw-bold text-primary d-block text-center text-md-start">${itemTotal} ₽</span>
                         </div>
                         
                         <!-- Удалить -->
-                        <div class="col-1 col-md-1 text-end">
+                        <div class="col-2 col-sm-1 col-md-1 text-center text-md-end">
                             <button class="btn btn-link text-danger p-0" onclick="removeFromCart('${item.id}')" title="Удалить">
                                 <i class="bi bi-trash fs-5"></i>
                             </button>
@@ -377,7 +388,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initAddToCartButtons();
 });
 
-// Функция для инициализации кнопок добавления
+// Функция для инициализации кнопок добавления (ИСПРАВЛЕНА)
 function initAddToCartButtons() {
     document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
         btn.removeEventListener('click', addToCartHandler);
@@ -385,15 +396,25 @@ function initAddToCartButtons() {
     });
 }
 
-// Обработчик клика по кнопке добавления
+// Обработчик клика по кнопке добавления (ИСПРАВЛЕН)
 function addToCartHandler(e) {
     e.preventDefault();
+    
+    // Получаем данные из data-атрибутов
     const product = {
         id: this.dataset.id,
         name: this.dataset.name,
         price: parseInt(this.dataset.price),
         image: this.dataset.image
     };
+    
+    // Проверяем, что все данные получены
+    if (!product.id || !product.name || isNaN(product.price) || !product.image) {
+        console.error('Отсутствуют данные товара:', this.dataset);
+        showNotification('Ошибка: неполные данные товара', 'danger');
+        return;
+    }
+    
     addToCart(product);
     
     // Анимация кнопки
