@@ -13,6 +13,31 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #e9f0f5 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            margin-top: -76px;
+        }
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .category-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 <body>
 
@@ -37,7 +62,7 @@
                     <a class="nav-link" href="contacts.html">Контакты</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link position-relative" href="cart.html" id="cartLink">
+                    <a class="nav-link cart-link" href="cart.html" id="cartLink">
                         <i class="bi bi-cart3"></i> Корзина
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary cart-count d-none">0</span>
                     </a>
@@ -71,7 +96,7 @@
         <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Почему выбирают нас?</h2>
         <div class="row g-4">
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="feature-card text-center p-4">
+                <div class="feature-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
                     <div class="feature-icon-wrapper mb-4">
                         <i class="bi bi-truck display-1 text-primary"></i>
                     </div>
@@ -80,7 +105,7 @@
                 </div>
             </div>
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="feature-card text-center p-4">
+                <div class="feature-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
                     <div class="feature-icon-wrapper mb-4">
                         <i class="bi bi-award display-1 text-primary"></i>
                     </div>
@@ -89,7 +114,7 @@
                 </div>
             </div>
             <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                <div class="feature-card text-center p-4">
+                <div class="feature-card text-center p-4 bg-white rounded-4 shadow-sm h-100">
                     <div class="feature-icon-wrapper mb-4">
                         <i class="bi bi-heart display-1 text-primary"></i>
                     </div>
@@ -107,7 +132,7 @@
         <h2 class="text-center display-5 fw-bold mb-5" data-aos="fade-up">Популярные категории</h2>
         <div class="row g-4">
             <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
-                <a href="catalog.html#корма" class="text-decoration-none">
+                <a href="catalog.html?filter=dogs" class="text-decoration-none">
                     <div class="category-card p-5 text-center rounded-4 bg-primary bg-opacity-10">
                         <i class="bi bi-basket display-1 text-primary mb-3"></i>
                         <h3 class="h4 fw-bold text-dark">Корма</h3>
@@ -115,7 +140,7 @@
                 </a>
             </div>
             <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
-                <a href="catalog.html#игрушки" class="text-decoration-none">
+                <a href="catalog.html?filter=toys" class="text-decoration-none">
                     <div class="category-card p-5 text-center rounded-4 bg-success bg-opacity-10">
                         <i class="bi bi-controller display-1 text-success mb-3"></i>
                         <h3 class="h4 fw-bold text-dark">Игрушки</h3>
@@ -123,7 +148,7 @@
                 </a>
             </div>
             <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
-                <a href="catalog.html#аквариумы" class="text-decoration-none">
+                <a href="catalog.html?filter=fish" class="text-decoration-none">
                     <div class="category-card p-5 text-center rounded-4 bg-info bg-opacity-10">
                         <i class="bi bi-water display-1 text-info mb-3"></i>
                         <h3 class="h4 fw-bold text-dark">Аквариумы</h3>
