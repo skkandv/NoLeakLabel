@@ -1,135 +1,300 @@
 <!doctype html>
-<html>
+<html lang="ru">
 <head>
-<title>Аквариум 50 литров - ЗвероМир</title>
-<meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аквариум 50 литров - ЗвероМир</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Шапка сайта -->
-<div class="header">
-    <a href="index.html" class="logo">
-        🐾 ЗвероМир
-    </a>
-    <ul class="menu">
-        <li><a href="index.html">Главная</a></li>
-        <li><a href="catalog.html">Каталог</a></li>
-        <li><a href="contacts.html">Контакты</a></li>
-        <li><a href="cart.html" class="cart-badge">🛒 Корзина</a></li>
-    </ul>
-</div>
-
-<hr />
+<!-- Навигационная панель -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <div class="container">
+        <a class="navbar-brand logo" href="index.html">
+            <i class="bi bi-tree-fill text-primary"></i> ЗвероМир
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="catalog.html">Каталог</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contacts.html">Контакты</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link cart-link" href="cart.html" id="cartLink">
+                        <i class="bi bi-cart3"></i> Корзина
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary cart-count d-none">0</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <!-- Хлебные крошки -->
-<div class="breadcrumbs">
-    Главная > Каталог > Аквариумистика
+<div class="container mt-5 pt-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Главная</a></li>
+            <li class="breadcrumb-item"><a href="catalog.html" class="text-decoration-none">Каталог</a></li>
+            <li class="breadcrumb-item"><a href="catalog.html?filter=fish" class="text-decoration-none">Аквариумистика</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Аквариум 50 литров</li>
+        </ol>
+    </nav>
 </div>
 
-<h1>Аквариум 50 литров полный комплект</h1>
+<!-- Товар -->
+<section class="py-4">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-6" data-aos="fade-right">
+                <div class="product-image-wrapper text-center">
+                    <img src="https://dolinaakvariumov.ru/image/cache/catalog/Akvas_2024/pryamoj/50loreh-300x300.jpg" 
+                         alt="Аквариум 50 литров" 
+                         class="img-fluid rounded-4 shadow-lg product-image"
+                         onerror="this.src='https://via.placeholder.com/400x400?text=Нет+фото'">
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <h1 class="display-5 fw-bold mb-4">Аквариум 50 литров полный комплект</h1>
+                
+                <div class="price-block bg-light p-4 rounded-4 mb-4 text-center">
+                    <span class="display-4 fw-bold text-primary">3 500 ₽</span>
+                </div>
+                
+                <div class="mb-4">
+                    <button class="btn btn-primary btn-lg w-100 py-3 add-to-cart-btn mb-3 rounded-pill"
+                            data-id="product5"
+                            data-name="Аквариум 50 литров полный комплект"
+                            data-price="3500"
+                            data-image="https://dolinaakvariumov.ru/image/cache/catalog/Akvas_2024/pryamoj/50loreh-300x300.jpg">
+                        <i class="bi bi-cart-plus me-2"></i>Добавить в корзину
+                    </button>
+                    <a href="catalog.html" class="btn btn-outline-secondary btn-lg w-100 py-3 rounded-pill">
+                        <i class="bi bi-arrow-left me-2"></i>Продолжить покупки
+                    </a>
+                </div>
+                
+                <div class="short-description p-4 bg-light rounded-4">
+                    <p class="lead mb-0">Полный комплект аквариума объемом 50 литров для начинающих и опытных аквариумистов. Включает все необходимое оборудование для запуска и поддержания здоровой экосистемы.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-<!-- Картинка товара -->
-<a href="https://dolinaakvariumov.ru/image/cache/catalog/Akvas_2024/pryamoj/50loreh-300x300.jpg" target="_blank">
-    <img class="product-image" src="https://dolinaakvariumov.ru/image/cache/catalog/Akvas_2024/pryamoj/50loreh-300x300.jpg" alt="Аквариум 50 литров" width="400">
-</a>
+<!-- Характеристики -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="display-5 fw-bold text-center mb-5" data-aos="fade-up">Характеристики</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="specs-list bg-white p-5 rounded-4 shadow-sm" data-aos="fade-up">
+                    <div class="spec-item d-flex justify-content-between py-3 border-bottom">
+                        <span class="fw-bold">Объем:</span>
+                        <span>50 литров</span>
+                    </div>
+                    <div class="spec-item d-flex justify-content-between py-3 border-bottom">
+                        <span class="fw-bold">Размеры:</span>
+                        <span>50x30x35 см</span>
+                    </div>
+                    <div class="spec-item d-flex justify-content-between py-3 border-bottom">
+                        <span class="fw-bold">Материал:</span>
+                        <span>Стекло 4 мм</span>
+                    </div>
+                    <div class="spec-item d-flex justify-content-between py-3 border-bottom">
+                        <span class="fw-bold">Вес:</span>
+                        <span>8 кг (пустой)</span>
+                    </div>
+                    <div class="spec-item d-flex justify-content-between py-3 border-bottom">
+                        <span class="fw-bold">Гарантия:</span>
+                        <span>12 месяцев</span>
+                    </div>
+                    <div class="spec-item d-flex justify-content-between py-3">
+                        <span class="fw-bold">Комплектация:</span>
+                        <span>Фильтр, обогреватель, свет</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-<!-- Блок с ценой и кнопкой -->
-<div class="price-block">
-    <h2>Цена: <span class="price-value">3 500 руб.</span></h2>
-    <button 
-        class="button add-to-cart-btn" 
-        data-id="product5"
-        data-name="Аквариум 50 литров полный комплект"
-        data-price="3500"
-        data-image="https://dolinaakvariumov.ru/image/cache/catalog/Akvas_2024/pryamoj/50loreh-300x300.jpg"
-        style="font-size: 18px; padding: 15px 40px;">
-        🛒 Добавить в корзину
-    </button>
-</div>
+<!-- Подробное описание -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="display-5 fw-bold text-center mb-5" data-aos="fade-up">Подробное описание</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="detailed-description bg-white p-5 rounded-4 shadow-sm" data-aos="fade-up">
+                    <p>Аквариум 50 литров — идеальный вариант для создания небольшой водной экосистемы в доме или офисе. Этот объем оптимален для содержания небольших стайных рыбок, креветок или нескольких средних рыб.</p>
+                    
+                    <h3 class="h4 fw-bold mt-4 mb-3">Особенности комплекта:</h3>
+                    <p>• <strong>Стеклянный аквариум</strong> — из качественного силикатного стекла</p>
+                    <p>• <strong>Встроенная подсветка</strong> — энергоэффективные светодиоды LED 6 Вт</p>
+                    <p>• <strong>Фильтрационная система</strong> — внутренний фильтр-помпа 5 Вт, 300 л/час</p>
+                    <p>• <strong>Терморегулятор</strong> — обогреватель 50 Вт, поддерживает стабильную температуру</p>
+                    <p>• <strong>Эргономичная крышка</strong> — предотвращает испарение воды и выпрыгивание рыб</p>
+                    
+                    <h3 class="h4 fw-bold mt-4 mb-3">Рекомендуемые обитатели:</h3>
+                    <p>• Стайка неонов (10-12 особей)</p>
+                    <p>• Пару карликовых гурами</p>
+                    <p>• Семейство креветок Вишня</p>
+                    <p>• Небольшие сомики-коридорасы</p>
+                    <p>• Живородящие рыбки (гуппи, моллинезии)</p>
+                    
+                    <h3 class="h4 fw-bold mt-4 mb-3">Рекомендации по запуску:</h3>
+                    <p>1. Установите аквариум на ровную прочную поверхность</p>
+                    <p>2. Засыпьте грунт (рекомендуется 3-5 см)</p>
+                    <p>3. Установите оборудование согласно инструкции</p>
+                    <p>4. Залейте отстоянную воду</p>
+                    <p>5. Включите оборудование и дайте системе работать 7-10 дней</p>
+                    <p>6. Добавьте первых неприхотливых рыб</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-<h2 class="product-title">Описание товара</h2>
-<p class="short-description">Полный комплект аквариума объемом 50 литров для начинающих и опытных аквариумистов. Включает все необходимое оборудование для запуска и поддержания здоровой экосистемы.</p>
+<!-- Таблица комплектации -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="display-5 fw-bold text-center mb-5" data-aos="fade-up">Комплектация</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="table-wrapper" data-aos="fade-up">
+                    <table class="table table-bordered bg-white rounded-4 overflow-hidden shadow-sm">
+                        <thead class="bg-primary text-white">
+                            <tr>
+                                <th class="p-3">Компонент</th>
+                                <th class="p-3">Характеристики</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="p-3">Аквариум</td>
+                                <td class="p-3">Стеклянный, 50 литров, 50x30x35 см</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3">Крышка с подсветкой</td>
+                                <td class="p-3">LED 6 Вт, естественный спектр</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3">Внутренний фильтр</td>
+                                <td class="p-3">5 Вт, 300 л/час, 3 ступени фильтрации</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3">Обогреватель</td>
+                                <td class="p-3">50 Вт, с терморегулятором</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3">Фон для задней стенки</td>
+                                <td class="p-3">На выбор (синий/черный/зеленый)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3">Аксессуары</td>
+                                <td class="p-3">Кормушка, сачок, инструкция</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-<div class="product-specs">
-    <h2 class="product-title">Характеристики товара</h2>
-    <ul>
-        <li>Объем: 50 литров</li>
-        <li>Габаритные размеры: 50x30x35 см (ДxШxВ)</li>
-        <li>Материал: стекло толщиной 4 мм</li>
-        <li>Цвет рамки: черный</li>
-        <li>Комплектация:
-            <ul>
-                <li>Стеклянный аквариум с крышкой</li>
-                <li>Светодиодная подсветка (LED)</li>
-                <li>Внутренний фильтр-помпа</li>
-                <li>Обогреватель с терморегулятором</li>
-                <li>Фон для задней стенки (на выбор)</li>
-                <li>Кормушка для рыбок</li>
-                <li>Сачок</li>
-                <li>Инструкция по запуску</li>
-            </ul>
-        </li>
-        <li>Мощность оборудования:
-            <ul>
-                <li>Фильтр: 5 Вт, 300 л/час</li>
-                <li>Обогреватель: 50 Вт</li>
-                <li>Подсветка: 6 Вт LED</li>
-            </ul>
-        </li>
-        <li>Вес: 8 кг (пустой)</li>
-        <li>Гарантия: 12 месяцев</li>
-    </ul>
-</div>
+<!-- Похожие товары -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="display-5 fw-bold text-center mb-5" data-aos="fade-up">Похожие товары</h2>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="card product-card h-100 border-0 shadow-sm">
+                    <img src="https://shop.purina.ru/media/catalog/product//5/2/52530a60-5947-11ee-8527-06612dae177d_jedk5vrzirrvaqpb.png" class="card-img-top p-3" alt="Корм для собак" style="height: 200px; object-fit: contain;" onerror="this.src='https://via.placeholder.com/200x200?text=Нет+фото'">
+                    <div class="card-body">
+                        <h5 class="card-title">Корм для собак Purina One</h5>
+                        <p class="card-text text-secondary">350 руб.</p>
+                        <a href="product1.html" class="btn btn-outline-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="card product-card h-100 border-0 shadow-sm">
+                    <img src="https://shop.purina.ru/media/catalog/product//1/0/104ab9ae-5e12-11ee-aa1b-067a761482e2_jfnxm2svorofzwvq.webp" class="card-img-top p-3" alt="Корм для кошек" style="height: 200px; object-fit: contain;" onerror="this.src='https://via.placeholder.com/200x200?text=Нет+фото'">
+                    <div class="card-body">
+                        <h5 class="card-title">Корм для кошек Purina One</h5>
+                        <p class="card-text text-secondary">950 руб.</p>
+                        <a href="product2.html" class="btn btn-outline-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="card product-card h-100 border-0 shadow-sm">
+                    <img src="https://api.zapovednik96.ru/upload/iblock/500/500fc4b9103d50aaf9e6d7cd3fbefd99.jpg" class="card-img-top p-3" alt="Игрушки для кошек" style="height: 200px; object-fit: contain;" onerror="this.src='https://via.placeholder.com/200x200?text=Нет+фото'">
+                    <div class="card-body">
+                        <h5 class="card-title">Набор игрушек для кошек</h5>
+                        <p class="card-text text-secondary">700 руб.</p>
+                        <a href="product4.html" class="btn btn-outline-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-<div class="detailed-description">
-    <h2 class="product-title">Подробное описание товара</h2>
-    <p>Аквариум 50 литров — идеальный вариант для создания небольшой водной экосистемы в доме или офисе. Этот объем оптимален для содержания небольших стайных рыбок, креветок или нескольких средних рыб.</p>
+<!-- Футер -->
+<footer class="bg-dark text-white py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <h4 class="mb-4"><i class="bi bi-tree-fill text-primary"></i> ЗвероМир</h4>
+                <p class="text-secondary">Забота о ваших питомцах — наша главная миссия.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h5 class="mb-4">Контакты</h5>
+                <p class="text-secondary"><i class="bi bi-telephone me-2"></i> +7 (495) 123-45-67</p>
+                <p class="text-secondary"><i class="bi bi-envelope me-2"></i> info@zveromir.ru</p>
+                <p class="text-secondary"><i class="bi bi-geo-alt me-2"></i> Красная пл., 3, Москва</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h5 class="mb-4">Режим работы</h5>
+                <p class="text-secondary">Ежедневно с 9:00 до 21:00</p>
+                <div class="social-links">
+                    <a href="#" class="text-white me-3"><i class="bi bi-telegram fs-4"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-whatsapp fs-4"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr class="bg-secondary">
+        <p class="text-center text-secondary mb-0">&copy; 2026 Все права защищены. Зоомагазин "ЗвероМир"</p>
+    </div>
+</footer>
 
-    <h3>Особенности комплекта:</h3>
-    <p>1. <strong>Стеклянный аквариум</strong> — изготовлен из качественного силикатного стекла, безопасного для рыб и растений</p>
-    <p>2. <strong>Встроенная подсветка</strong> — энергоэффективные светодиоды с естественным спектром, способствующие росту растений</p>
-    <p>3. <strong>Фильтрационная система</strong> — трехступенчатая фильтрация (механическая, биологическая, химическая)</p>
-    <p>4. <strong>Терморегулятор</strong> — поддерживает стабильную температуру воды ±1°C</p>
-    <p>5. <strong>Эргономичная крышка</strong> — предотвращает испарение воды и выпрыгивание рыб</p>
-
-    <h3>Рекомендуемые обитатели:</h3>
-    <p>• Стайка неонов (10-12 особей)</p>
-    <p>• Пару карликовых гурами</p>
-    <p>• Семейство креветок Вишня</p>
-    <p>• Небольшие сомики-коридорасы</p>
-    <p>• Живородящие рыбки (гуппи, моллинезии)</p>
-
-    <h3>Растения для данного объема:</h3>
-    <p>✓ Анубиас нано</p>
-    <p>✓ Яванский мох</p>
-    <p>✓ Криптокорины</p>
-    <p>✓ Роголистник</p>
-    <p>✓ Папоротники</p>
-
-    <h3>Преимущества аквариума 50 литров:</h3>
-    <p>• Простота в уходе и обслуживании</p>
-    <p>• Стабильная биологическая система</p>
-    <p>• Подходит для новичков в аквариумистике</p>
-    <p>• Компактные размеры для любого интерьера</p>
-    <p>• Экономичное энергопотребление</p>
-
-    <h3>Рекомендации по запуску:</h3>
-    <p>1. Установите аквариум на ровную прочную поверхность</p>
-    <p>2. Засыпьте грунт (рекомендуется 3-5 см)</p>
-    <p>3. Установите оборудование согласно инструкции</p>
-    <p>4. Залейте отстоянную воду</p>
-    <p>5. Включите оборудование и дайте системе работать 7-10 дней</p>
-    <p>6. Добавьте первых неприхотливых рыб</p>
-
-    <h3>Обслуживание:</h3>
-    <p>• Еженедельная подмена 20% воды</p>
-    <p>• Чистка фильтра раз в месяц</p>
-    <p>• Контроль параметров воды (температура, pH)</p>
-    <p>• Кормление 1-2 раза в день небольшими порциями</p>
-</div>
-
-<h2 class="product-title">Рекомендации по установке</h2>
-<p class="short-description">Установите аквариум вдали от прямых солнечных лучей и источников тепла. Используйте специальную подставку или прочную тумбу. Перед запуском тщательно промойте все элементы без использования моющих средств.</p>
-
-<div style="text-align: center; margin
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<!-- Cart JS -->
+<script src="cart.js"></script>
+<script>
+    AOS.init({ duration: 800, once: true });
+</script>
+</body>
+</html>
