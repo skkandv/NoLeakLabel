@@ -11,12 +11,14 @@ function saveCart() {
 // Функция для обновления счетчика в шапке
 function updateCartCount() {
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    const cartLink = document.getElementById('cartLink');
-    if (cartLink) {
+    const cartLinks = document.querySelectorAll('.cart-link');
+    
+    cartLinks.forEach(cartLink => {
         let badge = cartLink.querySelector('.cart-count');
         if (!badge) {
             badge = document.createElement('span');
             badge.className = 'position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary cart-count';
+            cartLink.style.position = 'relative';
             cartLink.appendChild(badge);
         }
         
@@ -26,7 +28,7 @@ function updateCartCount() {
         } else {
             badge.classList.add('d-none');
         }
-    }
+    });
 }
 
 // Функция для добавления товара
@@ -51,7 +53,7 @@ function removeFromCart(productId) {
     const item = cart.find(item => item.id === productId);
     cart = cart.filter(item => item.id !== productId);
     saveCart();
-    showNotification(`✗ ${item.name} удален из корзины`, 'danger');
+    showNotification(`✗ ${item ? item.name : 'Товар'} удален из корзины`, 'danger');
 }
 
 // Функция для изменения количества
@@ -70,12 +72,11 @@ function updateQuantity(productId, change) {
 // Функция для показа уведомления
 function showNotification(message, type = 'success') {
     const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
+    notification.className = `notification notification-${type} alert alert-${type === 'success' ? 'success' : 'danger'} d-flex align-items-center`;
+    notification.setAttribute('role', 'alert');
     notification.innerHTML = `
-        <div class="d-flex align-items-center">
-            <i class="bi bi-${type === 'success' ? 'check-circle-fill' : 'exclamation-circle-fill'} me-2"></i>
-            <span>${message}</span>
-        </div>
+        <i class="bi bi-${type === 'success' ? 'check-circle-fill' : 'exclamation-circle-fill'} me-2"></i>
+        <span>${message}</span>
     `;
     document.body.appendChild(notification);
     
@@ -118,18 +119,19 @@ function updateCartDisplay() {
             <div class="cart-item card mb-3 border-0 shadow-sm" data-id="${item.id}" data-aos="fade-up" data-aos-delay="${index * 50}">
                 <div class="card-body p-3 p-md-4">
                     <div class="row align-items-center g-3">
-                        <!-- Изображение товара - компактное и красивое -->
-                        <div class="col-12 col-sm-3 col-md-2">
-                            <div class="cart-image-wrapper text-center">
+                        <!-- Изображение товара -->
+                        <div class="col-3 col-md-2">
+                            <div class="cart-image-container text-center">
                                 <img src="${item.image}" alt="${item.name}" 
                                      class="img-fluid rounded-3 border" 
-                                     style="max-width: 80px; max-height: 80px; width: auto; height: auto; object-fit: contain;">
+                                     style="max-width: 80px; max-height: 80px; object-fit: contain;"
+                                     onerror="this.src='https://via.placeholder.com/80x80?text=Нет+фото'">
                             </div>
                         </div>
                         
                         <!-- Название товара -->
-                        <div class="col-12 col-sm-9 col-md-4">
-                            <h6 class="fw-bold mb-1 text-truncate" title="${item.name}">${item.name}</h6>
+                        <div class="col-9 col-md-4">
+                            <h6 class="fw-bold mb-1">${item.name}</h6>
                             <p class="text-secondary small mb-0">${item.price} ₽ / шт</p>
                         </div>
                         
@@ -151,12 +153,12 @@ function updateCartDisplay() {
                         </div>
                         
                         <!-- Цена -->
-                        <div class="col-4 col-md-2">
+                        <div class="col-2 col-md-2">
                             <span class="fw-bold text-primary d-block text-center text-md-start">${itemTotal} ₽</span>
                         </div>
                         
                         <!-- Удалить -->
-                        <div class="col-2 col-md-1 text-end">
+                        <div class="col-1 col-md-1 text-end">
                             <button class="btn btn-link text-danger p-0" onclick="removeFromCart('${item.id}')" title="Удалить">
                                 <i class="bi bi-trash fs-5"></i>
                             </button>
@@ -218,30 +220,36 @@ function checkout() {
     const delivery = total > 1000 ? 0 : 300;
     const finalTotal = total + delivery;
     
+    // Формируем детали заказа для модального окна
+    let orderDetails = '';
+    cart.forEach(item => {
+        orderDetails += `
+            <div class="d-flex justify-content-between small mb-1">
+                <span class="text-truncate" style="max-width: 250px;">${item.name}</span>
+                <span class="fw-bold">${item.quantity} × ${item.price} ₽ = ${item.price * item.quantity} ₽</span>
+            </div>
+        `;
+    });
+    
     // Создаем модальное окно Bootstrap
     const modalHtml = `
-        <div class="modal fade" id="orderModal" tabindex="-1">
+        <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">
+                        <h5 class="modal-title" id="orderModalLabel">
                             <i class="bi bi-check-circle-fill text-success me-2"></i>
                             Заказ оформлен
                         </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <p class="lead mb-4">Спасибо за покупку в ЗвероМире!</p>
                         
                         <!-- Список товаров в заказе -->
-                        <div class="order-items mb-3">
-                            <h6 class="fw-bold mb-2">Ваш заказ:</h6>
-                            ${cart.map(item => `
-                                <div class="d-flex justify-content-between small mb-1">
-                                    <span class="text-truncate" style="max-width: 200px;">${item.name}</span>
-                                    <span class="fw-bold">${item.quantity} × ${item.price} ₽</span>
-                                </div>
-                            `).join('')}
+                        <div class="order-items mb-3 p-3 bg-light rounded-3">
+                            <h6 class="fw-bold mb-3">Ваш заказ:</h6>
+                            ${orderDetails}
                         </div>
                         
                         <hr>
@@ -259,6 +267,10 @@ function checkout() {
                             <span class="h5 fw-bold">Итого:</span>
                             <span class="h5 fw-bold text-primary">${finalTotal} ₽</span>
                         </div>
+                        <p class="text-secondary small mt-3 mb-0">
+                            <i class="bi bi-info-circle me-1"></i>
+                            Наш менеджер свяжется с вами для подтверждения заказа.
+                        </p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
@@ -274,11 +286,12 @@ function checkout() {
     document.body.insertAdjacentHTML('beforeend', modalHtml);
     
     // Показываем модальное окно
-    const modal = new bootstrap.Modal(document.getElementById('orderModal'));
+    const modalElement = document.getElementById('orderModal');
+    const modal = new bootstrap.Modal(modalElement);
     modal.show();
     
     // Удаляем модальное окно после закрытия
-    document.getElementById('orderModal').addEventListener('hidden.bs.modal', function() {
+    modalElement.addEventListener('hidden.bs.modal', function() {
         this.remove();
     });
     
