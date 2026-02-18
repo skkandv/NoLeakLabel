@@ -1,176 +1,210 @@
 <!doctype html>
-<html>
+<html lang="ru">
 <head>
-    <title>Корм для собак "Purina One" - ЗвероМир</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корм для собак - ЗвероМир</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Шапка сайта -->
-<div class="header">
-    <a href="index.html" class="logo">
-        🐾 ЗвероМир
-    </a>
-    <ul class="menu">
-        <li><a href="index.html">Главная</a></li>
-        <li><a href="catalog.html">Каталог</a></li>
-        <li><a href="contacts.html">Контакты</a></li>
-        <li><a href="cart.html" class="cart-badge">🛒 Корзина</a></li>
-    </ul>
+<!-- Навигационная панель -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <div class="container">
+        <a class="navbar-brand logo" href="index.html">
+            <i class="bi bi-tree-fill text-primary"></i> ЗвероМир
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="catalog.html">Каталог</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contacts.html">Контакты</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link position-relative" href="cart.html" id="cartLink">
+                        <i class="bi bi-cart3"></i> Корзина
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary cart-count d-none">0</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Хлебные крошки -->
+<div class="container mt-5 pt-5">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Главная</a></li>
+            <li class="breadcrumb-item"><a href="catalog.html" class="text-decoration-none">Каталог</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Корм для собак</li>
+        </ol>
+    </nav>
 </div>
 
-<hr>
+<!-- Товар -->
+<section class="py-4">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-6" data-aos="fade-right">
+                <div class="product-image-wrapper">
+                    <img src="https://shop.purina.ru/media/catalog/product//5/2/52530a60-5947-11ee-8527-06612dae177d_jedk5vrzirrvaqpb.png" 
+                         alt="Корм для собак" 
+                         class="img-fluid rounded-4 shadow-lg">
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left">
+                <h1 class="display-5 fw-bold mb-4">Сухой корм для собак "Purina One" МИНИ 600 г</h1>
+                <div class="price-block bg-light p-4 rounded-4 mb-4">
+                    <span class="display-4 fw-bold text-primary">350 ₽</span>
+                </div>
+                
+                <div class="mb-4">
+                    <button class="btn btn-primary btn-lg w-100 py-3 add-to-cart-btn mb-3"
+                            data-id="product1"
+                            data-name="Корм для собак Purina One МИНИ 600 г"
+                            data-price="350"
+                            data-image="https://shop.purina.ru/media/catalog/product//5/2/52530a60-5947-11ee-8527-06612dae177d_jedk5vrzirrvaqpb.png">
+                        <i class="bi bi-cart-plus me-2"></i>Добавить в корзину
+                    </button>
+                    <a href="catalog.html" class="btn btn-outline-secondary btn-lg w-100 py-3">
+                        <i class="bi bi-arrow-left me-2"></i>Продолжить покупки
+                    </a>
+                </div>
+                
+                <div class="short-description p-4 bg-light rounded-4">
+                    <p class="lead mb-0">Корм Purina ONE® для собак мелких пород с чувствительным пищеварением — это высококачественное полнорационное питание, разработанное экспертами Пурина для поддержания здоровой микрофлоры кишечника.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-<b>Главная > Каталог > Корм для собак</b>
-<br><br>
+<!-- Характеристики -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="display-5 fw-bold text-center mb-5" data-aos="fade-up">Характеристики</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="specs-list bg-white p-5 rounded-4 shadow-sm" data-aos="fade-up">
+                    <div class="spec-item d-flex justify-content-between py-3 border-bottom">
+                        <span class="fw-bold">Вес:</span>
+                        <span>600 г</span>
+                    </div>
+                    <div class="spec-item d-flex justify-content-between py-3 border-bottom">
+                        <span class="fw-bold">Вкус:</span>
+                        <span>с лососем</span>
+                    </div>
+                    <div class="spec-item d-flex justify-content-between py-3 border-bottom">
+                        <span class="fw-bold">Основной ингредиент:</span>
+                        <span>лосось (30%)</span>
+                    </div>
+                    <div class="spec-item d-flex justify-content-between py-3 border-bottom">
+                        <span class="fw-bold">Производитель:</span>
+                        <span>Российская Федерация</span>
+                    </div>
+                    <div class="spec-item d-flex justify-content-between py-3">
+                        <span class="fw-bold">Особые потребности:</span>
+                        <span>при чувствительном пищеварении</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-<h1>Сухой корм для собак "Purina One" МИНИ для собак мелких пород для чувствительного пищеварения с лососем и рисом 600 г</h1>
-<br>
-
-<a href="https://aqplus.ru/upload/resize_cache/iblock/6ba/1200_1200_140cd750bba9870f18aada2478b24840a/ezvguzrqlldu1kr1p1bsrg2urei8o5ng.jpg" target="_blank">
-    <img class="product-image" src="https://shop.purina.ru/media/catalog/product//5/2/52530a60-5947-11ee-8527-06612dae177d_jedk5vrzirrvaqpb.png" alt="Корм для собак Purina One" width="400">
-</a>
-<br><br>
-
-<!-- Блок с ценой и кнопкой -->
-<div style="background: linear-gradient(135deg, #f0f8ff 0%, #ffffff 100%); padding: 20px; border-radius: 15px; margin-bottom: 20px;">
-    <h2 style="margin: 0 0 10px 0;">Цена: <span style="color: #4a6fa5;">350 руб.</span></h2>
-    <button 
-        class="button add-to-cart-btn" 
-        data-id="product1"
-        data-name="Корм для собак Purina One МИНИ 600 г"
-        data-price="350"
-        data-image="https://shop.purina.ru/media/catalog/product//5/2/52530a60-5947-11ee-8527-06612dae177d_jedk5vrzirrvaqpb.png"
-        style="font-size: 18px; padding: 15px 40px;">
-        🛒 Добавить в корзину
-    </button>
-</div>
-
-<h2 class="product-title">Описание товара</h2>
-<p class="short-description">Корм Purina ONE® (ПУРИНА УАН) для собак мелких пород с чувствительным пищеварением — это высококачественное полнорационное питание, разработанное экспертами Пурина для поддержания здоровой микрофлоры кишечника.</p>
-<br>
-
-<div class="product-specs">
-    <h2 class="product-title">Характеристики товара</h2>
-    <ul>
-        <li>Вес: 600 г</li>
-        <li>Вкус: с лососем</li>
-        <li>Основной ингредиент: лосось (30%)</li>
-        <li>Производитель: Российская Федерация</li>
-        <li>Особые потребности: при чувствительном пищеварении</li>
-        <li>Размер породы: для мелких и карликовых пород</li>
-        <li>Возраст: для взрослых собак</li>
-    </ul>
-    
-    <h3>Технические характеристики</h3>
-    <table class="specs-table">
-        <tr>
-            <th>Параметр</th>
-            <th>Значение</th>
-            <th>Норма</th>
-        </tr>
-        <tr>
-            <td>Белок</td>
-            <td>27.0%</td>
-            <td>≥ 22%</td>
-        </tr>
-        <tr>
-            <td>Жир</td>
-            <td>17.0%</td>
-            <td>≥ 12%</td>
-        </tr>
-        <tr>
-            <td>Клетчатка</td>
-            <td>2.0%</td>
-            <td>≤ 4%</td>
-        </tr>
-        <tr>
-            <td>Омега-3</td>
-            <td>0.4%</td>
-            <td>≥ 0.3%</td>
-        </tr>
-        <tr>
-            <td>Омега-6</td>
-            <td>2.7%</td>
-            <td>≥ 2.0%</td>
-        </tr>
-        <tr>
-            <td>Энергия</td>
-            <td>385 ккал/100г</td>
-            <td>350-400</td>
-        </tr>
-    </table>
-</div>
-<br>
-
-<div class="detailed-description">
-    <h2 class="product-title">Подробное описание товара</h2>
-    <p>Корм Purina ONE® (ПУРИНА УАН) для собак мелких пород с чувствительным пищеварением — это высококачественное полнорационное питание, разработанное экспертами Пурина для поддержания здоровой микрофлоры кишечника.</p>
-    <p>Сухой корм для собак мелких пород Purina ONE® с лососем и рисом 600 г — это:</p>
-    <p><strong>70% животного белка*</strong> — сочетание вкусных хрустящих крокетов и мягких кусочков**.</p>
-    <p>Мякоть сахарной свеклы помогает поддерживать здоровую микрофлору кишечника.</p>
-    <p>Высокое содержание Омега-3 жирных кислот и цинка помогает поддерживать кожу здоровой.</p>
-</div>
-<br>
-
-<h2 class="product-title">Сравнение кормов Purina One</h2>
-<table class="demo-table">
-    <tr>
-        <th colspan="2">Характеристика</th>
-        <th>Для мелких пород</th>
-        <th>Для средних пород</th>
-        <th>Для крупных пород</th>
-    </tr>
-    <tr>
-        <td rowspan="2">Состав</td>
-        <td>Белок</td>
-        <td>27%</td>
-        <td>25%</td>
-        <td>24%</td>
-    </tr>
-    <tr>
-        <td>Жир</td>
-        <td>17%</td>
-        <td>15%</td>
-        <td>14%</td>
-    </tr>
-    <tr>
-        <td colspan="2">Размер гранул</td>
-        <td>Мелкие</td>
-        <td>Средние</td>
-        <td>Крупные</td>
-    </tr>
-    <tr>
-        <td colspan="2">Рекомендуемый вес</td>
-        <td>до 10 кг</td>
-        <td>10-25 кг</td>
-        <td>25+ кг</td>
-    </tr>
-    <tr>
-        <td colspan="2">Цена за кг</td>
-        <td>580 руб</td>
-        <td>550 руб</td>
-        <td>520 руб</td>
-    </tr>
-</table>
-
-<h2>Смотрите также:</h2>
-<a href="product2.html">Корм для кошек</a> | 
-<a href="product3.html">Игрушки для собак</a>
-<br><br>
-
-<hr>
+<!-- Похожие товары -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="display-5 fw-bold text-center mb-5" data-aos="fade-up">Похожие товары</h2>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="card product-card h-100 border-0 shadow-sm">
+                    <img src="https://shop.purina.ru/media/catalog/product//1/0/104ab9ae-5e12-11ee-aa1b-067a761482e2_jfnxm2svorofzwvq.webp" class="card-img-top p-3" alt="Корм для кошек" style="height: 200px; object-fit: contain;">
+                    <div class="card-body">
+                        <h5 class="card-title">Корм для кошек Purina One</h5>
+                        <p class="card-text text-secondary">950 руб.</p>
+                        <a href="product2.html" class="btn btn-outline-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="card product-card h-100 border-0 shadow-sm">
+                    <img src="https://aqplus.ru/upload/resize_cache/iblock/6ba/1200_1200_140cd750bba9870f18aada2478b24840a/ezvguzrqlldu1kr1p1bsrg2urei8o5ng.jpg" class="card-img-top p-3" alt="Игрушка для собак" style="height: 200px; object-fit: contain;">
+                    <div class="card-body">
+                        <h5 class="card-title">Игрушка для собак (кость)</h5>
+                        <p class="card-text text-secondary">450 руб.</p>
+                        <a href="product3.html" class="btn btn-outline-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="card product-card h-100 border-0 shadow-sm">
+                    <img src="https://api.zapovednik96.ru/upload/iblock/500/500fc4b9103d50aaf9e6d7cd3fbefd99.jpg" class="card-img-top p-3" alt="Игрушки для кошек" style="height: 200px; object-fit: contain;">
+                    <div class="card-body">
+                        <h5 class="card-title">Набор игрушек для кошек</h5>
+                        <p class="card-text text-secondary">700 руб.</p>
+                        <a href="product4.html" class="btn btn-outline-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- Футер -->
-<div class="footer">
-    <p>&copy; Все права защищены 2026 Зоомагазин "ЗвероМир"</p>
-    <p>Телефон: +7 (495) 123-45-67 | Email: info@zveromir.ru</p>
-    <p>г. Москва, Красная площадь, д. 3, 3 этаж</p>
-</div>
+<footer class="bg-dark text-white py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <h4 class="mb-4"><i class="bi bi-tree-fill text-primary"></i> ЗвероМир</h4>
+                <p class="text-secondary">Забота о ваших питомцах — наша главная миссия.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h5 class="mb-4">Контакты</h5>
+                <p class="text-secondary"><i class="bi bi-telephone me-2"></i> +7 (495) 123-45-67</p>
+                <p class="text-secondary"><i class="bi bi-envelope me-2"></i> info@zveromir.ru</p>
+                <p class="text-secondary"><i class="bi bi-geo-alt me-2"></i> Красная пл., 3, Москва</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h5 class="mb-4">Режим работы</h5>
+                <p class="text-secondary">Ежедневно с 9:00 до 21:00</p>
+                <div class="social-links">
+                    <a href="#" class="text-white me-3"><i class="bi bi-telegram fs-4"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-whatsapp fs-4"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr class="bg-secondary">
+        <p class="text-center text-secondary mb-0">&copy; 2026 Все права защищены. Зоомагазин "ЗвероМир"</p>
+    </div>
+</footer>
 
-<!-- Подключаем скрипт корзины -->
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<!-- Cart JS -->
 <script src="cart.js"></script>
-
+<script>
+    AOS.init({ duration: 800, once: true });
+</script>
 </body>
 </html>
