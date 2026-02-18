@@ -69,20 +69,88 @@ function updateQuantity(productId, change) {
     }
 }
 
-// Функция для показа уведомления
+// Функция для показа уведомления СНИЗУ
 function showNotification(message, type = 'success') {
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type} alert alert-${type === 'success' ? 'success' : 'danger'} d-flex align-items-center`;
-    notification.setAttribute('role', 'alert');
-    notification.innerHTML = `
-        <i class="bi bi-${type === 'success' ? 'check-circle-fill' : 'exclamation-circle-fill'} me-2"></i>
-        <span>${message}</span>
-    `;
-    document.body.appendChild(notification);
+    // Создаем контейнер для уведомлений, если его нет
+    let notificationContainer = document.getElementById('notification-container');
+    if (!notificationContainer) {
+        notificationContainer = document.createElement('div');
+        notificationContainer.id = 'notification-container';
+        notificationContainer.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 350px;
+        `;
+        document.body.appendChild(notificationContainer);
+    }
     
+    // Создаем уведомление
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type} alert alert-${type === 'success' ? 'success' : 'danger'} d-flex align-items-center shadow-lg`;
+    notification.setAttribute('role', 'alert');
+    notification.style.cssText = `
+        margin-bottom: 0;
+        animation: slideInUp 0.3s ease forwards;
+        border-left: 4px solid ${type === 'success' ? '#28a745' : '#dc3545'};
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    `;
+    
+    notification.innerHTML = `
+        <i class="bi bi-${type === 'success' ? 'check-circle-fill' : 'exclamation-circle-fill'} me-2 fs-5"></i>
+        <span class="flex-grow-1">${message}</span>
+        <button type="button" class="btn-close btn-sm ms-2" aria-label="Close" onclick="this.parentElement.remove()"></button>
+    `;
+    
+    // Добавляем уведомление в контейнер
+    notificationContainer.appendChild(notification);
+    
+    // Добавляем анимацию появления
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideInUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @keyframes slideOutDown {
+            from {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Автоматическое удаление через 3 секунды
     setTimeout(() => {
-        notification.classList.add('fade-out');
-        setTimeout(() => notification.remove(), 300);
+        if (notification.parentNode) {
+            notification.style.animation = 'slideOutDown 0.3s ease forwards';
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                    
+                    // Удаляем контейнер, если он пустой
+                    if (notificationContainer.children.length === 0) {
+                        notificationContainer.remove();
+                    }
+                }
+            }, 300);
+        }
     }, 3000);
 }
 
