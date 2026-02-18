@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<title>Контакты - Зоомагазин "ЗвероМир"</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+<!-- Шапка сайта -->
+<div class="header">
+    <a href="index.html" class="logo">
+        🐾 ЗвероМир
+    </a>
+    <ul class="menu">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="catalog.html">Каталог</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+        <li><a href="cart.html" class="cart-badge">🛒 Корзина</a></li>
+    </ul>
+</div>
+
+<hr />
+
+<h1>Контакты</h1>
+
+<h2>Напишите нам</h2>
+<form class="contact-form">
+    <label for="name">Имя:</label><br>
+    <input type="text" id="name" name="name" placeholder="Введите ваше имя" required><br><br>
+    
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" placeholder="example@mail.ru" required><br><br>
+    
+    <label for="subject">Тема:</label><br>
+    <input type="text" id="subject" name="subject" placeholder="Тема обращения" required><br><br>
+    
+    <label for="message">Сообщение:</label><br>
+    <textarea id="message" name="message" rows="5" cols="40" placeholder="Опишите ваш вопрос или пожелание" required></textarea><br><br>
+    
+    <label for="phone">Телефон:</label><br>
+    <input type="tel" id="phone" name="phone" placeholder="+7 (999) 123-45-67"><br><br>
+    
+    <label for="pet">Тип питомца:</label><br>
+    <select id="pet" name="pet">
+        <option value="">Выберите тип питомца</option>
+        <option value="dog">Собака</option>
+        <option value="cat">Кошка</option>
+        <option value="fish">Рыбки</option>
+        <option value="bird">Птицы</option>
+        <option value="rodent">Грызуны</option>
+        <option value="reptile">Рептилии</option>
+        <option value="other">Другие</option>
+    </select><br><br>
+    
+    <input type="submit" value="Отправить сообщение">
+</form>
+
+<hr />
+
+<h2>Адрес</h2>
+<p><strong>Контактный номер телефона:</strong> +7 (495) 123-45-67</p>
+<p><strong>Адрес:</strong> Красная пл., 3, Москва, 109012</p>
+<p><strong>Email:</strong> info@zveromir.ru</p>
+<p><strong>Режим работы:</strong> Ежедневно с 9:00 до 21:00</p>
+<p><strong>Доставка:</strong> Осуществляем доставку по Москве и области в течение 24 часов</p>
+<p><strong>Самовывоз:</strong> Возможен с 10:00 до 20:00</p>
+
+<p><strong>Реквизиты:</strong> ООО "ЗвероМир", ИНН 1234567890, ОГРН 1234567890123</p>
+
+<h2>Наше местоположение</h2>
+<div class="map-container">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2245.373789929247!2d37.61773491593037!3d55.75199498055105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54a5a738fa419%3A0x7c347d506b52311f!2z0JzQvtGB0LrQstCw!5e0!3m2!1sru!2sru!4v1645451234567!5m2!1sru!2sru" width="600" height="400" style="border:0;" allowfullscreen="" loading="lazy" title="Карта расположения магазина ЗвероМир"></iframe>
+</div>
+
+<hr />
+
+<!-- Футер -->
+<div class="footer">
+    <p>&copy; Все права защищены 2026 Зоомагазин "ЗвероМир"</p>
+    <p>Телефон: +7 (495) 123-45-67 | Email: info@zveromir.ru</p>
+    <p>г. Москва, Красная площадь, д. 3, 3 этаж</p>
+</div>
+
+<!-- Подключаем скрипт корзины -->
+<script src="cart.js"></script>
+
+</body>
+</html>
