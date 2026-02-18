@@ -199,7 +199,7 @@ function updateCartDisplay() {
                         
                         <!-- Название товара -->
                         <div class="col-9 col-md-4">
-                            <h6 class="fw-bold mb-1">${item.name}</h6>
+                            <h6 class="fw-bold mb-1 text-truncate" title="${item.name}">${item.name}</h6>
                             <p class="text-secondary small mb-0">${item.price} ₽ / шт</p>
                         </div>
                         
@@ -412,3 +412,4 @@ window.removeFromCart = removeFromCart;
 window.updateQuantity = updateQuantity;
 window.checkout = checkout;
 window.initAddToCartButtons = initAddToCartButtons;
+
