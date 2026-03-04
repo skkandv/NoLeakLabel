@@ -13,84 +13,6 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Дополнительные стили для каталога */
-        .category-btn {
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .category-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-        
-        .category-btn:active::before {
-            width: 300px;
-            height: 300px;
-        }
-        
-        .product-card {
-            cursor: pointer;
-        }
-        
-        .product-card .btn {
-            transform: translateY(0);
-            transition: all 0.3s ease;
-        }
-        
-        .product-card:hover .btn {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
-        }
-        
-        .product-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #3b82f6;
-            color: white;
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            z-index: 1;
-        }
-        
-        .loading-spinner {
-            display: none;
-            text-align: center;
-            padding: 2rem;
-        }
-        
-        .loading-spinner.show {
-            display: block;
-        }
-        
-        .loader {
-            border: 3px solid #f3f3f3;
-            border-radius: 50%;
-            border-top: 3px solid #3b82f6;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
 </head>
 <body>
 
@@ -274,10 +196,12 @@
         }
     ];
 
-    // Отображение товаров с анимацией
+    // Функция для отображения товаров
     function displayProducts(filter = 'all') {
         const container = document.getElementById('productsContainer');
         const spinner = document.getElementById('loadingSpinner');
+        
+        if (!container) return;
         
         spinner.classList.add('show');
         
@@ -286,7 +210,7 @@
             
             if (filtered.length === 0) {
                 container.innerHTML = `
-                    <div class="col-12 text-center py-5 fade-in">
+                    <div class="col-12 text-center py-5">
                         <i class="bi bi-emoji-frown display-1 text-secondary mb-4"></i>
                         <h3 class="fw-bold mb-3">Товары не найдены</h3>
                         <p class="text-secondary mb-4">В этой категории пока нет товаров</p>
@@ -295,7 +219,7 @@
                 `;
             } else {
                 container.innerHTML = filtered.map((product, index) => `
-                    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="${index * 100}">
+                    <div class="col-md-6 col-lg-4">
                         <div class="product-card h-100">
                             ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
                             <img src="${product.image}" class="img-fluid" alt="${product.name}" 
@@ -325,44 +249,89 @@
             
             // Добавляем обработчики для кнопок "В корзину"
             attachAddToCartHandlers();
-        }, 300); // Имитация загрузки
+        }, 300);
     }
 
     // Функция для обработки кнопок добавления в корзину
     function attachAddToCartHandlers() {
         document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const product = {
-                    id: this.dataset.id,
-                    name: this.dataset.name,
-                    price: parseInt(this.dataset.price),
-                    image: this.dataset.image,
-                    quantity: 1
-                };
-                
-                // Вызов функции из cart.js
-                if (typeof addToCart === 'function') {
-                    addToCart(product);
-                } else {
-                    console.log('Добавлено в корзину:', product);
-                    showNotification('Товар добавлен в корзину!', 'success');
-                }
-            });
+            btn.removeEventListener('click', handleAddToCart);
+            btn.addEventListener('click', handleAddToCart);
+        });
+    }
+
+    // Обработчик добавления в корзину
+    function handleAddToCart(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const product = {
+            id: this.dataset.id,
+            name: this.dataset.name,
+            price: parseInt(this.dataset.price),
+            image: this.dataset.image,
+            quantity: 1
+        };
+        
+        // Проверяем, существует ли функция addToCart из cart.js
+        if (typeof window.addToCart === 'function') {
+            window.addToCart(product);
+        } else {
+            // Если функция не найдена, используем локальную
+            addToCartLocal(product);
+        }
+    }
+
+    // Локальная функция добавления в корзину (на случай отсутствия cart.js)
+    function addToCartLocal(product) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingItem = cart.find(item => item.id === product.id);
+        
+        if (existingItem) {
+            existingItem.quantity = (existingItem.quantity || 1) + 1;
+        } else {
+            cart.push(product);
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+        showNotification('Товар добавлен в корзину!', 'success');
+        
+        // Обновляем счетчик
+        updateCartCountLocal();
+    }
+
+    // Локальное обновление счетчика
+    function updateCartCountLocal() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+        const cartCounts = document.querySelectorAll('.cart-count');
+        
+        cartCounts.forEach(badge => {
+            if (totalItems > 0) {
+                badge.classList.remove('d-none');
+                badge.textContent = totalItems;
+            } else {
+                badge.classList.add('d-none');
+            }
         });
     }
 
     // Функция для уведомлений
-    function showNotification(message, type = 'info') {
+    function showNotification(message, type = 'success') {
         const container = document.getElementById('notification-container');
         if (!container) return;
         
         const notification = document.createElement('div');
         notification.className = `notification ${type}`;
+        
+        let icon = type === 'success' ? 'check-circle-fill' : 'info-circle-fill';
+        
         notification.innerHTML = `
-            <i class="bi ${type === 'success' ? 'bi-check-circle' : 'bi-info-circle'} me-2"></i>
-            ${message}
+            <i class="bi bi-${icon} me-2" style="color: ${type === 'success' ? '#10b981' : '#3b82f6'};"></i>
+            <span class="flex-grow-1">${message}</span>
+            <button class="btn-close btn-sm ms-2" onclick="this.parentElement.remove()"></button>
         `;
+        
         container.appendChild(notification);
         
         setTimeout(() => {
@@ -377,35 +346,39 @@
         }, 3000);
     }
 
-    // Обработчики фильтров
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            // Убираем активный класс у всех кнопок
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            // Добавляем активный класс текущей кнопке
-            this.classList.add('active');
-            
-            const filter = this.dataset.filter;
-            displayProducts(filter);
+    // Инициализация при загрузке
+    document.addEventListener('DOMContentLoaded', function() {
+        // Обновляем счетчик корзины
+        updateCartCountLocal();
+        
+        // Отображаем товары
+        displayProducts('all');
+        
+        // Обработчики фильтров
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                displayProducts(this.dataset.filter);
+            });
         });
-    });
-
-    // Кнопка "Наверх"
-    const scrollBtn = document.getElementById('scrollTopBtn');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            scrollBtn.classList.add('show');
-        } else {
-            scrollBtn.classList.remove('show');
+        
+        // Кнопка "Наверх"
+        const scrollBtn = document.getElementById('scrollTopBtn');
+        if (scrollBtn) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    scrollBtn.classList.add('show');
+                } else {
+                    scrollBtn.classList.remove('show');
+                }
+            });
+            
+            scrollBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
         }
     });
-    
-    scrollBtn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // Первоначальная загрузка товаров
-    displayProducts('all');
 </script>
 </body>
 </html>
