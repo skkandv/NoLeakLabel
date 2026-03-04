@@ -352,4 +352,104 @@
                         <a href="product5.html" class="btn btn-outline-primary w-100">Подробнее</a>
                     </div>
                 </div>
-            </
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Футер -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <h4 class="mb-4"><i class="bi bi-tree-fill text-primary"></i> ЗвероМир</h4>
+                <p class="text-secondary">Забота о ваших питомцах — наша главная миссия.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h5 class="mb-4">Контакты</h5>
+                <p><i class="bi bi-telephone me-2"></i> +7 (495) 123-45-67</p>
+                <p><i class="bi bi-envelope me-2"></i> info@zveromir.ru</p>
+                <p><i class="bi bi-geo-alt me-2"></i> Красная пл., 3, Москва</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h5 class="mb-4">Режим работы</h5>
+                <p class="text-secondary">Ежедневно с 9:00 до 21:00</p>
+                <div class="social-links">
+                    <a href="#" class="text-white me-3"><i class="bi bi-telegram fs-4"></i></a>
+                    <a href="#" class="text-white me-3"><i class="bi bi-whatsapp fs-4"></i></a>
+                    <a href="#" class="text-white"><i class="bi bi-instagram fs-4"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr class="bg-secondary">
+        <p class="text-center text-secondary mb-0">&copy; 2026 Все права защищены. Зоомагазин "ЗвероМир"</p>
+    </div>
+</footer>
+
+<!-- Уведомления -->
+<div id="notification-container"></div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const total = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+        const counter = document.getElementById('cartCount');
+        
+        if (counter) {
+            if (total > 0) {
+                counter.style.display = 'inline';
+                counter.textContent = total;
+            } else {
+                counter.style.display = 'none';
+            }
+        }
+    }
+
+    function showNotification(message) {
+        const container = document.getElementById('notification-container');
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.innerHTML = `
+            <i class="bi bi-check-circle-fill me-2" style="color: #10b981;"></i>
+            <span>${message}</span>
+        `;
+        
+        container.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
+    }
+
+    document.getElementById('addToCartBtn').addEventListener('click', function() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        const product = {
+            id: 'product4',
+            name: 'Набор игрушек-удочек для кошек',
+            price: 700,
+            image: 'https://api.zapovednik96.ru/upload/iblock/500/500fc4b9103d50aaf9e6d7cd3fbefd99.jpg',
+            quantity: 1
+        };
+        
+        const existing = cart.find(item => item.id === product.id);
+        
+        if (existing) {
+            existing.quantity += 1;
+        } else {
+            cart.push(product);
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        showNotification('Товар добавлен в корзину!');
+    });
+
+    document.addEventListener('DOMContentLoaded', updateCartCount);
+</script>
+
+</body>
+</html>
