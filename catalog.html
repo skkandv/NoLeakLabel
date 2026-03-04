@@ -75,6 +75,21 @@
         .loading-spinner.show {
             display: block;
         }
+        
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 3px solid #3b82f6;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -308,5 +323,89 @@
             
             spinner.classList.remove('show');
             
-            // Анимация появления
-            container.querySelectorAll('.product-card').
+            // Добавляем обработчики для кнопок "В корзину"
+            attachAddToCartHandlers();
+        }, 300); // Имитация загрузки
+    }
+
+    // Функция для обработки кнопок добавления в корзину
+    function attachAddToCartHandlers() {
+        document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const product = {
+                    id: this.dataset.id,
+                    name: this.dataset.name,
+                    price: parseInt(this.dataset.price),
+                    image: this.dataset.image,
+                    quantity: 1
+                };
+                
+                // Вызов функции из cart.js
+                if (typeof addToCart === 'function') {
+                    addToCart(product);
+                } else {
+                    console.log('Добавлено в корзину:', product);
+                    showNotification('Товар добавлен в корзину!', 'success');
+                }
+            });
+        });
+    }
+
+    // Функция для уведомлений
+    function showNotification(message, type = 'info') {
+        const container = document.getElementById('notification-container');
+        if (!container) return;
+        
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.innerHTML = `
+            <i class="bi ${type === 'success' ? 'bi-check-circle' : 'bi-info-circle'} me-2"></i>
+            ${message}
+        `;
+        container.appendChild(notification);
+        
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.style.animation = 'slideOutRight 0.3s ease forwards';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.remove();
+                    }
+                }, 300);
+            }
+        }, 3000);
+    }
+
+    // Обработчики фильтров
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Убираем активный класс у всех кнопок
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            // Добавляем активный класс текущей кнопке
+            this.classList.add('active');
+            
+            const filter = this.dataset.filter;
+            displayProducts(filter);
+        });
+    });
+
+    // Кнопка "Наверх"
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollBtn.classList.add('show');
+        } else {
+            scrollBtn.classList.remove('show');
+        }
+    });
+    
+    scrollBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Первоначальная загрузка товаров
+    displayProducts('all');
+</script>
+</body>
+</html>
